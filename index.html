@@ -118,6 +118,17 @@ footer b{color:var(--ye)}
 #lb img{touch-action:pan-y;user-select:none;-webkit-user-drag:none;animation:none;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);transition:filter .25s}
 #lb img.ld{filter:blur(5px) brightness(.9)}
 #lb button{touch-action:manipulation}
+
+/* ratio-preserving tiles + readable names */
+#dirs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:0 0 16px}
+#dirs:empty{display:none}
+#dirs .t.f{aspect-ratio:auto;min-height:56px;justify-content:flex-start;text-align:left;padding:12px 14px;background:var(--ye);color:#0b1a33;font-size:14px;line-height:1.2;text-shadow:none}
+#dirs .t.f:hover{background:#0b1a33;color:var(--ye);box-shadow:6px 6px 0 var(--or)}
+.m .t:not(.ok){min-height:190px}
+.m .t img{height:auto}
+.t .n{opacity:1;background:#0b1a33;color:#f4f1ea;font-size:11.5px;font-weight:600;padding:6px 9px;text-shadow:none;border-top:3px solid var(--ink)}
+.m .t .n{position:static}
+.g .t .n{position:absolute;left:0;right:0;bottom:0}
 </style>
 </head>
 <body>
@@ -133,9 +144,10 @@ footer b{color:var(--ye)}
   <div class="bar" id="bar" style="display:none">
     <span id="count"></span><button id="up">↑ Up</button><span class="sp"></span>
     <button data-s="110">S</button><button data-s="170" class="on">M</button><button data-s="260">L</button>
-    <button id="mode">Original ratio</button><button id="share">Copy link</button></div>
+    <button id="mode">Square crop</button><button id="share">Copy link</button></div>
   <div id="msg" style="display:none"></div>
-  <div id="grid" class="g"></div>
+  <div id="dirs"></div>
+  <div id="grid" class="m"></div>
 </main>
 <section id="feat">
   <div class="wrap"><div class="orange"><h2>3 steps. That's it.</h2>
@@ -159,7 +171,7 @@ footer b{color:var(--ye)}
 const $=id=>document.getElementById(id);
 const IMG=/\.(png|jpe?g|gif|webp|avif|bmp|svg)$/i;
 const enc=s=>s.split('/').map(encodeURIComponent).join('/');
-let ctx=null,imgs=[],cur=0,mode='g';
+let ctx=null,imgs=[],cur=0,mode='m';
 
 function parse(u){
   let x;try{x=new URL(u.trim().startsWith('http')?u.trim():'https://'+u.trim())}catch{return null}
@@ -194,7 +206,7 @@ const say=(t,err)=>{const m=$('msg');m.style.display=t?'block':'none';m.textCont
 async function show(u){
   $('u').value=u;
   const t=parse(u);
-  land(0);$('grid').innerHTML='';$('bar').style.display='none';
+  land(0);$('grid').innerHTML='';$('dirs').innerHTML='';$('bar').style.display='none';
   if(!t){say('That doesn\'t look like a GitHub link.',1);return}
   say('Loading…');
   try{
@@ -204,11 +216,11 @@ async function show(u){
     const items=r.d.tree;
     const dirs=items.filter(e=>e.type==='tree').sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
     imgs=items.filter(e=>e.type==='blob'&&IMG.test(e.path)).sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
-    const g=$('grid');const frag=document.createDocumentFragment();
+    const g=$('grid');const frag=document.createDocumentFragment();const df=document.createDocumentFragment();
     dirs.forEach(d=>{
       const a=document.createElement('div');a.className='t f';a.textContent='📁 '+d.path;
       a.onclick=()=>go(`https://github.com/${ctx.o}/${ctx.r}/tree/${enc(ctx.ref)}/${enc(ctx.path?ctx.path+'/'+d.path:d.path)}`);
-      frag.appendChild(a);
+      df.appendChild(a);
     });
     imgs.forEach((e,i)=>{
       const a=document.createElement('div');a.className='t';a.style.setProperty('--d',Math.min(i,24)*35+'ms');
@@ -219,7 +231,7 @@ async function show(u){
       const n=document.createElement('div');n.className='n';n.textContent=e.path;
       a.append(im,n);a.onclick=()=>openLb(i);frag.appendChild(a);
     });
-    g.appendChild(frag);
+    g.appendChild(frag);$('dirs').appendChild(df);
     $('bar').style.display='flex';
     $('count').textContent=`${imgs.length} images`+(dirs.length?` · ${dirs.length} folders`:'');
     $('up').style.display=ctx.path?'':'none';
@@ -262,10 +274,10 @@ lb.addEventListener('click',e=>{if(e.target===lb)$('lx').click()});
 $('f').onsubmit=e=>{e.preventDefault();go($('u').value)};
 $('up').onclick=()=>{const p=ctx.path.split('/');p.pop();go(`https://github.com/${ctx.o}/${ctx.r}/tree/${enc(ctx.ref)}/${enc(p.join('/'))}`)};
 document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{document.documentElement.style.setProperty('--w',b.dataset.s+'px');document.querySelectorAll('[data-s]').forEach(x=>x.classList.toggle('on',x===b))});
-$('mode').onclick=()=>{mode=mode==='g'?'m':'g';$('grid').className=mode;$('mode').classList.toggle('on',mode==='m')};
+$('mode').onclick=()=>{mode=mode==='g'?'m':'g';$('grid').className=mode;$('mode').textContent=mode==='m'?'Square crop':'Original ratio';$('mode').classList.toggle('on',mode==='g')};
 $('share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('share').textContent='Copied ✓';setTimeout(()=>$('share').textContent='Copy link',1500)}catch{}};
 function route(){const h=decodeURIComponent(location.hash.slice(1));
-  if(h)show(h);else{land(1);$('grid').innerHTML='';$('bar').style.display='none';say('')}}
+  if(h)show(h);else{land(1);$('grid').innerHTML='';$('dirs').innerHTML='';$('bar').style.display='none';say('')}}
 addEventListener('hashchange',route);route();
 </script>
 <script>
