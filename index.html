@@ -115,6 +115,9 @@ footer b{color:var(--ye)}
 #lb button{background:var(--ye);color:#0b1a33;border-color:#f4f1ea;box-shadow:3px 3px 0 #f4f1ea}
 #lb .x{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;background:var(--rd);color:#fff}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.t img{opacity:1}}
+#lb img{touch-action:pan-y;user-select:none;-webkit-user-drag:none;animation:none;max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);transition:filter .25s}
+#lb img.ld{filter:blur(5px) brightness(.9)}
+#lb button{touch-action:manipulation}
 </style>
 </head>
 <body>
@@ -225,18 +228,37 @@ async function show(u){
   }catch(e){say(e.message||'Something went wrong.',1)}
 }
 function go(u){location.hash=u}
-function openLb(i){cur=(i+imgs.length)%imgs.length;const e=imgs[cur];$('li').src=raw(ctx,e.path);$('lc').textContent=`${cur+1}/${imgs.length} · ${e.path}`;$('lb').classList.add('open')}
-$('lx').onclick=()=>{$('lb').classList.remove('open');$('li').src=''};
-$('lp').onclick=()=>openLb(cur-1);$('ln').onclick=()=>openLb(cur+1);
+const disp=u=>`https://wsrv.nl/?url=${encodeURIComponent(u)}&w=1600&output=webp&q=82`;
+let tok=0;
+function openLb(i,dir){
+  cur=(i+imgs.length)%imgs.length;const e=imgs[cur],full=raw(ctx,e.path),li=$('li'),my=++tok;
+  $('lc').textContent=`${cur+1}/${imgs.length} · ${e.path}`;$('lb').classList.add('open');
+  li.classList.add('ld');li.style.transition='none';li.style.transform=dir?`translateX(${dir*70}px)`:'none';li.style.opacity=dir?'0':'1';
+  li.src=thumb(full);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{li.style.transition='transform .22s ease,opacity .22s ease';li.style.transform='none';li.style.opacity='1'}));
+  const done=u=>{if(my===tok){li.src=u;li.classList.remove('ld')}};
+  const hi=new Image();hi.onload=()=>done(hi.src);
+  hi.onerror=()=>{const h2=new Image();h2.onload=()=>done(full);h2.src=full};hi.src=disp(full);
+  [cur+1,cur-1].forEach(k=>{const n=imgs[(k+imgs.length)%imgs.length];if(n)new Image().src=disp(raw(ctx,n.path))});
+}
+$('lx').onclick=()=>{tok++;$('lb').classList.remove('open');$('li').removeAttribute('src')};
+$('lp').onclick=()=>openLb(cur-1,-1);$('ln').onclick=()=>openLb(cur+1,1);
 $('ld').onclick=async()=>{
   const e=imgs[cur],url=raw(ctx,e.path);
   try{const b=await (await fetch(url)).blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=e.path;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5e3)}
   catch{window.open(url,'_blank')}
 };
 document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('open'))return;
-  if(e.key==='ArrowLeft')openLb(cur-1);if(e.key==='ArrowRight')openLb(cur+1);if(e.key==='Escape')$('lx').click()});
-let sx=0;$('lb').addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
-$('lb').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>60)openLb(cur+(d<0?1:-1))});
+  if(e.key==='ArrowLeft')openLb(cur-1,-1);if(e.key==='ArrowRight')openLb(cur+1,1);if(e.key==='Escape')$('lx').click()});
+(function(){const lb=$('lb'),li=$('li');let sx=0,sy=0,dx=0,on=false;
+lb.addEventListener('touchstart',e=>{if(e.target.closest('button'))return;sx=e.touches[0].clientX;sy=e.touches[0].clientY;dx=0;on=true;li.style.transition='none'},{passive:true});
+lb.addEventListener('touchmove',e=>{if(!on)return;dx=e.touches[0].clientX-sx;if(Math.abs(e.touches[0].clientY-sy)>Math.abs(dx)*1.3)return;li.style.transform=`translateX(${dx}px)`;li.style.opacity=1-Math.min(Math.abs(dx)/450,.5)},{passive:true});
+lb.addEventListener('touchend',()=>{if(!on)return;on=false;
+  if(Math.abs(dx)>50)openLb(cur+(dx<0?1:-1),dx<0?1:-1);
+  else{li.style.transition='transform .2s,opacity .2s';li.style.transform='none';li.style.opacity='1'}});
+lb.addEventListener('click',e=>{if(e.target===lb)$('lx').click()});
+})();
+
 $('f').onsubmit=e=>{e.preventDefault();go($('u').value)};
 $('up').onclick=()=>{const p=ctx.path.split('/');p.pop();go(`https://github.com/${ctx.o}/${ctx.r}/tree/${enc(ctx.ref)}/${enc(p.join('/'))}`)};
 document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{document.documentElement.style.setProperty('--w',b.dataset.s+'px');document.querySelectorAll('[data-s]').forEach(x=>x.classList.toggle('on',x===b))});
