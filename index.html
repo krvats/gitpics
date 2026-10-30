@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GitPix – GitHub Image Gallery &amp; Folder Previewer (Free)</title>
+<meta name="description" content="Preview every image in any GitHub repo or folder as a thumbnail gallery. Free, no login, no install, works on mobile. Paste a link and browse.">
+<meta name="keywords" content="github image gallery, github image viewer, preview images in github folder, github wallpaper viewer, github thumbnail preview, browse github images, github repo image preview">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://gitpix.pages.dev/">
+<meta name="theme-color" content="#0b1a33">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GitPix">
+<meta property="og:title" content="GitPix – See every image in any GitHub folder">
+<meta property="og:description" content="Paste a GitHub link, get a thumbnail gallery. Free, no login, mobile-friendly.">
+<meta property="og:url" content="https://gitpix.pages.dev/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="GitPix – GitHub Image Gallery">
+<meta name="twitter:description" content="Paste a GitHub link, get a thumbnail gallery of every image.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GitPix","url":"https://gitpix.pages.dev/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Preview every image in any GitHub repo or folder as a thumbnail gallery."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I preview images in a GitHub folder?","acceptedAnswer":{"@type":"Answer","text":"Paste the GitHub repo or folder link into GitPix and press Show. Every image appears as a thumbnail."}},{"@type":"Question","name":"Does GitPix need a login?","acceptedAnswer":{"@type":"Answer","text":"No. It works with public repositories and needs no account or install."}},{"@type":"Question","name":"Does it work on phones?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is built mobile-first with swipe navigation and one-tap download."}}]}]}</script>
+<style>
+:root{--bg:#f4f7fc;--card:#fff;--text:#0b1a33;--sub:#5b6b86;--line:#dbe3f0;--a:#2f6bff;--b:#7c5cff;--w:170px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#081226;--card:#0f2142;--text:#e8eefc;--sub:#8fa3c7;--line:#1d3560}}
+:root[data-theme=dark]{--bg:#081226;--card:#0f2142;--text:#e8eefc;--sub:#8fa3c7;--line:#1d3560}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);min-height:100vh}
+button{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 12px;font-size:14px}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:0 auto;padding:14px 14px 0}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.logo b{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+main{max-width:960px;margin:0 auto;padding:0 14px 30px}
+#hero{text-align:center;padding:5vh 0 14px}
+#hero h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:10px}
+#hero h1 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero p{color:var(--sub);max-width:520px;margin:0 auto}
+form{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;box-shadow:0 8px 30px #2f6bff14;max-width:680px;margin:14px auto 0}
+input[type=text]{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font-size:16px;padding:10px}
+button.go{background:linear-gradient(90deg,var(--a),var(--b));border:0;color:#fff;font-weight:700;border-radius:12px;padding:0 20px}
+#chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:12px 0 4px;font-size:12px;color:var(--sub);align-items:center}
+#chips a{color:var(--a);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:3px 10px}
+.bar{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:14px 0 8px;font-size:13px;color:var(--sub)}
+.bar .sp{flex:1}.bar button{padding:4px 10px}.bar button.on{border-color:var(--a);color:var(--a)}
+#msg{max-width:640px;margin:30px auto;text-align:center;color:var(--sub)}#msg.err{color:#e5484d}
+#grid.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--w),1fr));gap:8px}
+#grid.m{column-width:var(--w);column-gap:8px}
+.t{display:block;position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;min-height:60px;transition:transform .15s}
+.t:hover{transform:translateY(-2px)}
+.g .t{aspect-ratio:1}.m .t{margin-bottom:8px;break-inside:avoid}
+.t img{display:block;width:100%}.g .t img{height:100%;object-fit:cover}
+.t .n{position:absolute;left:0;right:0;bottom:0;padding:14px 6px 4px;font-size:11px;color:#fff;background:linear-gradient(transparent,#000a);opacity:0;transition:.15s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.t:hover .n{opacity:1}
+.f{display:flex;align-items:center;justify-content:center;gap:6px;aspect-ratio:1;padding:8px;text-align:center;font-size:13px;word-break:break-word}
+.m .f{aspect-ratio:auto;min-height:70px}
+#feat{margin-top:40px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.cards div,.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.cards b{display:block;margin-bottom:4px}.cards span,.faq p{color:var(--sub);font-size:14px}
+#feat h2{font-size:1.1rem;margin:26px 0 10px}
+.faq details{margin-bottom:8px}.faq summary{cursor:pointer;font-weight:600}
+footer{text-align:center;color:var(--sub);font-size:12px;padding:0 14px 24px}
+#lb{position:fixed;inset:0;z-index:50;background:#000e;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:env(safe-area-inset-top) 8px env(safe-area-inset-bottom)}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:calc(100vh - 130px);object-fit:contain;border-radius:8px}
+#lb .cap{color:#ddd;font-size:12px;max-width:90vw;text-align:center;word-break:break-all}
+#lb .row{display:flex;gap:8px}#lb button{background:#222;color:#fff;border-color:#444}
+#lb .x{position:absolute;top:calc(8px + env(safe-area-inset-top));right:10px}
+</style>
+</head>
+<body>
+<header class="top"><div class="logo">🖼️ Git<b>Pix</b></div><button id="th" aria-label="Toggle theme">🌙</button></header>
+<main>
+  <section id="hero"><h1>See every image in <span>any GitHub folder</span></h1>
+    <p>GitHub only shows file names. Paste a repo or folder link and get a thumbnail gallery. Free, no login.</p></section>
+  <form id="f"><input id="u" type="text" placeholder="Paste a GitHub repo or folder link…" autocomplete="off" inputmode="url" aria-label="GitHub link"><button class="go">Show</button></form>
+  <div id="chips">Try:
+    <a href="#https://github.com/Static91/Wallpaper-Collection/tree/main/Mobile%20Wallpapers/1001%20-%201154">Wallpaper-Collection</a>
+    <a href="#https://github.com/VectorZeroAI/Wallpapers/tree/main/abstract">Wallpapers</a></div>
+  <div class="bar" id="bar" style="display:none">
+    <span id="count"></span><button id="up">↑ Up</button><span class="sp"></span>
+    <button data-s="110">S</button><button data-s="170" class="on">M</button><button data-s="260">L</button>
+    <button id="mode">Original ratio</button><button id="share">Copy link</button></div>
+  <div id="msg" style="display:none"></div>
+  <div id="grid" class="g"></div>
+  <section id="feat">
+    <div class="cards"><div><b>⚡ No install</b><span>Open the site, paste a link. Nothing to set up.</span></div>
+      <div><b>📱 Phone-first</b><span>Swipe through images and download in one tap.</span></div>
+      <div><b>🔒 Private &amp; free</b><span>No login, no tracking. Runs in your browser.</span></div></div>
+    <h2>How to preview images in a GitHub folder</h2>
+    <p style="color:var(--sub);font-size:14px">Copy the folder link from GitHub, paste it above and press Show. Or put this site's address plus <b>#</b> before any GitHub link.</p>
+    <h2>FAQ</h2><div class="faq">
+      <details><summary>Does GitPix need a login?</summary><p>No. It works with public repositories and needs no account or install.</p></details>
+      <details><summary>Does it work on phones?</summary><p>Yes. It is built mobile-first with swipe navigation and one-tap download.</p></details>
+      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file list shows only generic icons, so GitPix adds a real thumbnail view.</p></details></div>
+  </section>
+</main>
+<footer>GitPix · Not affiliated with GitHub · Images belong to their repo owners</footer>
+<div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
+  <div class="row"><button id="lp">← Prev</button><button id="ld">⬇ Download</button><button id="ln">Next →</button></div></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const IMG=/\.(png|jpe?g|gif|webp|avif|bmp|svg)$/i;
+const enc=s=>s.split('/').map(encodeURIComponent).join('/');
+let ctx=null,imgs=[],cur=0,mode='g';
+
+function parse(u){
+  let x;try{x=new URL(u.trim().startsWith('http')?u.trim():'https://'+u.trim())}catch{return null}
+  if(x.hostname!=='github.com'&&x.hostname!=='www.github.com')return null;
+  const p=x.pathname.split('/').filter(Boolean).map(decodeURIComponent);
+  if(p.length<2)return null;
+  let rest=(p[2]==='tree'||p[2]==='blob')?p.slice(3):[];
+  if(p[2]==='blob'&&IMG.test(rest[rest.length-1]||''))rest=rest.slice(0,-1);
+  return{o:p[0],r:p[1],rest};
+}
+async function tree(o,r,spec){
+  const res=await fetch(`https://api.github.com/repos/${o}/${r}/git/trees/${spec}`);
+  if(res.status===403||res.status===429)throw new Error('GitHub rate limit reached (60 requests/hour). Try again later.');
+  if(!res.ok)return null;
+  return res.json();
+}
+async function resolve(t){
+  const{o,r,rest}=t;
+  if(!rest.length){const d=await tree(o,r,'HEAD');return d&&{ref:'HEAD',path:'',d}}
+  for(let i=1;i<=rest.length;i++){
+    const ref=rest.slice(0,i).join('/'),path=rest.slice(i).join('/');
+    const d=await tree(o,r,enc(ref)+(path?':'+enc(path):''));
+    if(d)return{ref,path,d};
+  }
+  return null;
+}
+const raw=(c,name)=>`https://raw.githubusercontent.com/${c.o}/${c.r}/${enc(c.ref)}/${enc(c.path?c.path+'/'+name:name)}`;
+const thumb=url=>`https://wsrv.nl/?url=${encodeURIComponent(url)}&w=420&output=webp&q=70`;
+function land(on){['hero','feat','chips'].forEach(i=>$(i).style.display=on?'':'none')}
+const say=(t,err)=>{const m=$('msg');m.style.display=t?'block':'none';m.textContent=t||'';m.className=err?'err':''};
+
+async function show(u){
+  $('u').value=u;
+  const t=parse(u);
+  land(0);$('grid').innerHTML='';$('bar').style.display='none';
+  if(!t){say('That doesn\'t look like a GitHub link.',1);return}
+  say('Loading…');
+  try{
+    const r=await resolve(t);
+    if(!r){say('Couldn\'t find that folder. Is the repo public and the link correct?',1);return}
+    ctx={o:t.o,r:t.r,ref:r.ref,path:r.path};
+    const items=r.d.tree;
+    const dirs=items.filter(e=>e.type==='tree').sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
+    imgs=items.filter(e=>e.type==='blob'&&IMG.test(e.path)).sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
+    const g=$('grid');const frag=document.createDocumentFragment();
+    dirs.forEach(d=>{
+      const a=document.createElement('div');a.className='t f';a.textContent='📁 '+d.path;
+      a.onclick=()=>go(`https://github.com/${ctx.o}/${ctx.r}/tree/${enc(ctx.ref)}/${enc(ctx.path?ctx.path+'/'+d.path:d.path)}`);
+      frag.appendChild(a);
+    });
+    imgs.forEach((e,i)=>{
+      const a=document.createElement('div');a.className='t';
+      const im=document.createElement('img');im.loading='lazy';im.alt=e.path;
+      const full=raw(ctx,e.path);
+      im.src=thumb(full);
+      im.onerror=()=>{im.onerror=null;im.src=full};
+      const n=document.createElement('div');n.className='n';n.textContent=e.path;
+      a.append(im,n);a.onclick=()=>openLb(i);frag.appendChild(a);
+    });
+    g.appendChild(frag);
+    $('bar').style.display='flex';
+    $('count').textContent=`${imgs.length} images`+(dirs.length?` · ${dirs.length} folders`:'');
+    $('up').style.display=ctx.path?'':'none';
+    if(r.d.truncated)say('Folder is huge; GitHub returned a partial list.');
+    else say(!imgs.length&&!dirs.length?'No images here.':!imgs.length?'No images in this folder. Open a subfolder.':'');
+  }catch(e){say(e.message||'Something went wrong.',1)}
+}
+function go(u){location.hash=u}
+function openLb(i){cur=(i+imgs.length)%imgs.length;const e=imgs[cur];$('li').src=raw(ctx,e.path);$('lc').textContent=`${cur+1}/${imgs.length} · ${e.path}`;$('lb').classList.add('open')}
+$('lx').onclick=()=>{$('lb').classList.remove('open');$('li').src=''};
+$('lp').onclick=()=>openLb(cur-1);$('ln').onclick=()=>openLb(cur+1);
+$('ld').onclick=async()=>{
+  const e=imgs[cur],url=raw(ctx,e.path);
+  try{const b=await (await fetch(url)).blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=e.path;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5e3)}
+  catch{window.open(url,'_blank')}
+};
+document.addEventListener('keydown',e=>{if(!$('lb').classList.contains('open'))return;
+  if(e.key==='ArrowLeft')openLb(cur-1);if(e.key==='ArrowRight')openLb(cur+1);if(e.key==='Escape')$('lx').click()});
+let sx=0;$('lb').addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+$('lb').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>60)openLb(cur+(d<0?1:-1))});
+$('f').onsubmit=e=>{e.preventDefault();go($('u').value)};
+$('up').onclick=()=>{const p=ctx.path.split('/');p.pop();go(`https://github.com/${ctx.o}/${ctx.r}/tree/${enc(ctx.ref)}/${enc(p.join('/'))}`)};
+document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{document.documentElement.style.setProperty('--w',b.dataset.s+'px');document.querySelectorAll('[data-s]').forEach(x=>x.classList.toggle('on',x===b))});
+$('mode').onclick=()=>{mode=mode==='g'?'m':'g';$('grid').className=mode;$('mode').classList.toggle('on',mode==='m')};
+$('share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('share').textContent='Copied ✓';setTimeout(()=>$('share').textContent='Copy link',1500)}catch{}};
+function route(){const h=decodeURIComponent(location.hash.slice(1));
+  if(h)show(h);else{land(1);$('grid').innerHTML='';$('bar').style.display='none';say('')}}
+addEventListener('hashchange',route);route();
+</script>
+<script>
+(function(){const r=document.documentElement,b=document.getElementById('th');
+let t;try{t=localStorage.getItem('gp-theme')}catch(e){}
+const apply=x=>{r.dataset.theme=x;b.textContent=x==='dark'?'☀️':'🌙'};
+apply(t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+b.onclick=()=>{const x=r.dataset.theme==='dark'?'light':'dark';apply(x);try{localStorage.setItem('gp-theme',x)}catch(e){}}})();
+</script>
+</body>
+</html>
