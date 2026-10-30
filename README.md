@@ -9,3 +9,8 @@ GitHub's file list shows only generic icons. GitPics adds the missing thumbnail 
 **Shortcut:** put `https://gitpics.pages.dev/#` before any GitHub link.
 
 Single static file (`index.html`), no build step, no backend.
+
+![GitPics](og.jpg)
+
+## Credits
+Share image background: "Amazon delta" from [leouieda/landsat-wallpapers](https://github.com/leouieda/landsat-wallpapers), made from public-domain Landsat data and released under CC0.
