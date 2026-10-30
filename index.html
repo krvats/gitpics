@@ -17,82 +17,137 @@
 <meta name="twitter:description" content="Paste a GitHub link, get a thumbnail gallery of every image.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GitPics","url":"https://gitpics.pages.dev/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Preview every image in any GitHub repo or folder as a thumbnail gallery."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I preview images in a GitHub folder?","acceptedAnswer":{"@type":"Answer","text":"Paste the GitHub repo or folder link into GitPics and press Show. Every image appears as a thumbnail."}},{"@type":"Question","name":"Does GitPics need a login?","acceptedAnswer":{"@type":"Answer","text":"No. It works with public repositories and needs no account or install."}},{"@type":"Question","name":"Does it work on phones?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is built mobile-first with swipe navigation and one-tap download."}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f7fc;--card:#fff;--text:#0b1a33;--sub:#5b6b86;--line:#dbe3f0;--a:#2f6bff;--b:#7c5cff;--w:170px}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#081226;--card:#0f2142;--text:#e8eefc;--sub:#8fa3c7;--line:#1d3560}}
-:root[data-theme=dark]{--bg:#081226;--card:#0f2142;--text:#e8eefc;--sub:#8fa3c7;--line:#1d3560}
+:root{--bg:#f8f6f1;--card:#fff;--text:#0b1a33;--sub:#4b5a75;--ink:#0b1a33;--dot:#0b1a3366;--or:#ff5a1f;--ye:#ffd600;--te:#008080;--rd:#e63946;--w:170px}
+:root[data-theme=dark]{--bg:#0b1a33;--card:#12294f;--text:#f4f1ea;--sub:#9fb0cf;--ink:#f4f1ea;--dot:#ffffff2e}
 *{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);min-height:100vh}
-button{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 12px;font-size:14px}
-.top{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:0 auto;padding:14px 14px 0}
-.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
-.logo b{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
-main{max-width:960px;margin:0 auto;padding:0 14px 30px}
-#hero{text-align:center;padding:5vh 0 14px}
-#hero h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:10px}
-#hero h1 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
-#hero p{color:var(--sub);max-width:520px;margin:0 auto}
-form{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;box-shadow:0 8px 30px #2f6bff14;max-width:680px;margin:14px auto 0}
-input[type=text]{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font-size:16px;padding:10px}
-button.go{background:linear-gradient(90deg,var(--a),var(--b));border:0;color:#fff;font-weight:700;border-radius:12px;padding:0 20px}
-#chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:12px 0 4px;font-size:12px;color:var(--sub);align-items:center}
-#chips a{color:var(--a);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:3px 10px}
-.bar{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:14px 0 8px;font-size:13px;color:var(--sub)}
-.bar .sp{flex:1}.bar button{padding:4px 10px}.bar button.on{border-color:var(--a);color:var(--a)}
-#msg{max-width:640px;margin:30px auto;text-align:center;color:var(--sub)}#msg.err{color:#e5484d}
-#grid.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--w),1fr));gap:8px}
-#grid.m{column-width:var(--w);column-gap:8px}
-.t{display:block;position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;min-height:60px;transition:transform .15s}
-.t:hover{transform:translateY(-2px)}
-.g .t{aspect-ratio:1}.m .t{margin-bottom:8px;break-inside:avoid}
-.t img{display:block;width:100%}.g .t img{height:100%;object-fit:cover}
-.t .n{position:absolute;left:0;right:0;bottom:0;padding:14px 6px 4px;font-size:11px;color:#fff;background:linear-gradient(transparent,#000a);opacity:0;transition:.15s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+html{scroll-behavior:smooth}
+body{background-color:var(--bg);background-image:radial-gradient(circle,var(--dot) 1.6px,transparent 1.8px);background-size:32px 32px;color:var(--text);font:15px/1.55 'Space Grotesk',system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-left);min-height:100vh;overflow-x:hidden}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+.strip{background:var(--te);color:#fff;font-size:12px;font-weight:700;text-align:center;padding:calc(7px + env(safe-area-inset-top)) 10px 7px;border-bottom:3px solid var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;max-width:960px;margin:0 auto;padding:14px 16px;border-bottom:3px solid var(--ink);max-width:none;background:var(--bg)}
+.top .in{display:flex;align-items:center;gap:8px}
+.logo{font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:-.01em}
+.logo:hover{animation:wiggle .5s}
+.tag{background:var(--or);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+@keyframes wiggle{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+button{cursor:pointer;font-family:inherit;font-weight:700;border:3px solid var(--ink);background:var(--card);color:var(--text);border-radius:8px;padding:7px 12px;font-size:13px;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+button:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+button:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+#th{padding:5px 10px}
+main{max-width:960px;margin:0 auto;padding:0 16px 30px;position:relative}
+#hero{position:relative;padding:28px 0 8px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.pill{background:var(--card);border:2.5px solid var(--ink);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;text-transform:uppercase;box-shadow:3px 3px 0 var(--ink)}
+.pill.red{background:var(--rd);color:#fff}
+#hero h1{line-height:.95;text-transform:uppercase;margin-bottom:12px}
+#hero .big{display:block;font-size:clamp(3rem,15vw,6rem);font-weight:800;color:var(--or);letter-spacing:-.03em;text-shadow:4px 4px 0 var(--ink);animation:slam .6s cubic-bezier(.2,1.4,.4,1) backwards}
+#hero .sub{display:block;font-size:clamp(1.3rem,6vw,2.1rem);font-weight:700;margin-top:6px}
+@keyframes slam{from{opacity:0;transform:translateY(-30px) scale(1.15)}}
+#hero p{max-width:560px;font-weight:500;animation:fadeup .6s .15s backwards}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}}
+form{display:flex;gap:8px;background:var(--card);border:3px solid var(--ink);border-radius:10px;padding:6px;box-shadow:6px 6px 0 var(--ink);max-width:700px;margin:18px 0 0;animation:fadeup .6s .25s backwards;transition:transform .15s,box-shadow .15s}
+form:focus-within{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ye),9px 9px 0 3px var(--ink)}
+input[type=text]{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:600 16px 'Space Grotesk',system-ui;padding:10px}
+button.go{background:var(--or);color:#fff;text-transform:uppercase;padding:0 18px;box-shadow:3px 3px 0 var(--ink)}
+#chips{display:flex;flex-direction:column;gap:8px;margin:16px 0 4px;font-size:12px;font-weight:700;text-transform:uppercase;align-items:center;animation:fadeup .6s .35s backwards}
+#chips .cr{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#chips a{color:var(--text);text-decoration:none;background:var(--ye);color:#0b1a33;border:2.5px solid var(--ink);border-radius:99px;padding:3px 11px;box-shadow:2px 2px 0 var(--ink);transition:transform .12s}
+#chips a:hover{transform:translate(-2px,-2px) rotate(-2deg)}
+.fl{position:absolute;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:12px;display:grid;place-items:center;font-size:26px;width:58px;height:58px;animation:float 5s ease-in-out infinite}
+.fl.a{background:var(--ye);right:4%;top:8px;rotate:10deg}
+.fl.b{background:var(--te);right:18%;top:70px;rotate:-8deg;animation-delay:-2s;width:48px;height:48px;font-size:22px}
+.fl.c{background:var(--rd);right:2%;top:120px;rotate:6deg;animation-delay:-3.5s;width:44px;height:44px;font-size:20px}
+.fl.d{display:none}
+@keyframes float{50%{translate:0 -12px}}
+@media(max-width:640px){.fl{transform:scale(.7);opacity:.95}.fl.a{top:-4px}.fl.b{top:50px;right:22%}.fl.c{top:84px}}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:18px 0 10px;font-size:13px;font-weight:700;text-transform:uppercase}
+.bar .sp{flex:1}.bar button{padding:4px 10px;font-size:12px}.bar button.on{background:var(--ye);color:#0b1a33}
+#msg{max-width:640px;margin:30px auto;text-align:center;font-weight:700;border:3px solid var(--ink);background:var(--card);border-radius:10px;padding:14px;box-shadow:5px 5px 0 var(--ink)}#msg.err{background:var(--rd);color:#fff}
+#grid.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--w),1fr));gap:14px}
+#grid.m{column-width:var(--w);column-gap:14px}
+.t{display:block;position:relative;background:var(--card);border:3px solid var(--ink);border-radius:10px;overflow:hidden;cursor:pointer;min-height:60px;box-shadow:4px 4px 0 var(--ink);animation:pop .4s cubic-bezier(.2,1.3,.4,1) backwards;animation-delay:var(--d,0ms);transition:transform .15s,box-shadow .15s}
+@keyframes pop{from{opacity:0;transform:scale(.8) rotate(-3deg)}}
+.t:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--or);z-index:2}
+.t:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.g .t{aspect-ratio:1}.m .t{margin-bottom:14px;break-inside:avoid}
+.t img{display:block;width:100%;opacity:0;transition:opacity .4s,transform .4s}.t.ok img{opacity:1}.g .t img{height:100%;object-fit:cover}.t:hover img{transform:scale(1.06)}
+.t:not(.ok):not(.f){background:linear-gradient(100deg,var(--card) 30%,var(--ye) 50%,var(--card) 70%);background-size:200% 100%;animation:pop .4s backwards,shim 1.2s linear infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.t .n{position:absolute;left:0;right:0;bottom:0;padding:14px 6px 4px;font-size:11px;font-weight:600;color:#fff;background:linear-gradient(transparent,#000b);opacity:0;transition:.15s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .t:hover .n{opacity:1}
-.f{display:flex;align-items:center;justify-content:center;gap:6px;aspect-ratio:1;padding:8px;text-align:center;font-size:13px;word-break:break-word}
+.f{display:flex;align-items:center;justify-content:center;gap:6px;aspect-ratio:1;padding:8px;text-align:center;font-size:13px;font-weight:700;word-break:break-word;background:var(--ye);color:#0b1a33}
 .m .f{aspect-ratio:auto;min-height:70px}
-#feat{margin-top:40px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
-.cards div,.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
-.cards b{display:block;margin-bottom:4px}.cards span,.faq p{color:var(--sub);font-size:14px}
-#feat h2{font-size:1.1rem;margin:26px 0 10px}
-.faq details{margin-bottom:8px}.faq summary{cursor:pointer;font-weight:600}
-footer{text-align:center;color:var(--sub);font-size:12px;padding:0 14px 24px}
-#lb{position:fixed;inset:0;z-index:50;background:#000e;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:env(safe-area-inset-top) 8px env(safe-area-inset-bottom)}
-#lb.open{display:flex}
-#lb img{max-width:100%;max-height:calc(100vh - 130px);object-fit:contain;border-radius:8px}
-#lb .cap{color:#ddd;font-size:12px;max-width:90vw;text-align:center;word-break:break-all}
-#lb .row{display:flex;gap:8px}#lb button{background:#222;color:#fff;border-color:#444}
-#lb .x{position:absolute;top:calc(8px + env(safe-area-inset-top));right:10px}
+#feat{margin-top:34px}
+.orange{background:var(--or);color:#fff;border:3px solid var(--ink);border-radius:10px;box-shadow:8px 8px 0 var(--ink);padding:22px 18px;transform:rotate(-1.2deg);margin:20px 0 34px;transition:transform .3s}
+.orange:hover{transform:rotate(0)}
+.orange h2{font-size:clamp(1.3rem,5vw,2rem);text-transform:uppercase;margin-bottom:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.steps div{background:#fff;color:#0b1a33;border:3px solid var(--ink);border-radius:8px;box-shadow:4px 4px 0 var(--ink);padding:10px 6px;text-align:center;transition:transform .2s}
+.steps div:nth-child(2){transform:rotate(1.5deg)}.steps div:nth-child(3){transform:rotate(-1deg)}
+.steps div:hover{transform:translateY(-5px) rotate(0)}
+.steps b{display:block;font-size:clamp(1.6rem,8vw,2.4rem);line-height:1}.steps span{font-size:11px;font-weight:700;text-transform:uppercase}
+.teal{background:var(--te);color:#fff;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);padding:36px 0}
+.teal h2,.wrap h2{font-size:clamp(1.5rem,6vw,2.2rem);text-transform:uppercase;line-height:1.05;margin-bottom:6px}
+.teal>.wrap>p{font-weight:600;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.cards div{position:relative;overflow:hidden;background:#fff;color:#0b1a33;border:3px solid var(--ink);border-radius:10px;box-shadow:5px 5px 0 var(--ink);padding:16px;transition:transform .2s,box-shadow .2s;animation:fadeup .6s backwards}
+.cards div:nth-child(2){animation-delay:.1s}.cards div:nth-child(3){animation-delay:.2s}
+.cards div:hover{transform:translate(-4px,-4px);box-shadow:9px 9px 0 var(--ye),9px 9px 0 3px var(--ink)}
+.cards i{position:absolute;right:6px;bottom:-14px;font:800 4.5rem/1 'Space Grotesk';color:#0b1a3314;font-style:normal}
+.cards b{display:block;text-transform:uppercase;margin-bottom:6px}.cards span{font-size:14px;color:#4b5a75;position:relative}
+.sec{padding:36px 0 10px}
+.sec p{color:var(--sub);font-weight:500;margin-bottom:6px}
+.faq{margin-top:12px}
+.faq details{background:var(--card);border:3px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 var(--ink);padding:12px 14px;margin-bottom:14px;transition:transform .15s}
+.faq details[open]{background:var(--ye);color:#0b1a33}.faq details[open] p{color:#0b1a33}
+.faq summary{cursor:pointer;font-weight:700;text-transform:uppercase;font-size:14px}
+footer{background:#0b1a33;color:#f4f1ea;border-top:3px solid var(--ink);text-align:center;font-size:12px;font-weight:600;padding:22px 14px calc(22px + env(safe-area-inset-bottom));margin-top:30px}
+footer b{color:var(--ye)}
+#lb{position:fixed;inset:0;z-index:50;background:#0b1a33f2;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom)}
+#lb.open{display:flex;animation:fadein .2s}
+#lb img{max-width:100%;max-height:calc(100vh - 140px);object-fit:contain;border:3px solid #f4f1ea;border-radius:8px;box-shadow:6px 6px 0 var(--or);animation:pop .3s backwards}
+@keyframes fadein{from{opacity:0}}
+#lb .cap{color:#f4f1ea;font-size:12px;font-weight:600;max-width:90vw;text-align:center;word-break:break-all}
+#lb .row{display:flex;gap:10px}
+#lb button{background:var(--ye);color:#0b1a33;border-color:#f4f1ea;box-shadow:3px 3px 0 #f4f1ea}
+#lb .x{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;background:var(--rd);color:#fff}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.t img{opacity:1}}
 </style>
 </head>
 <body>
-<header class="top"><div class="logo">🖼️ Git<b>Pics</b></div><button id="th" aria-label="Toggle theme">🌙</button></header>
+<div class="strip">⚡ Free · No login · Works on phones · Public GitHub repos</div>
+<header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">Free tool</span></div><button id="th" aria-label="Toggle theme">🌙</button></header>
 <main>
-  <section id="hero"><h1>See every image in <span>any GitHub folder</span></h1>
-    <p>GitHub only shows file names. Paste a repo or folder link and get a thumbnail gallery. Free, no login.</p></section>
+  <section id="hero"><i class="fl a">🌄</i><i class="fl b">🎨</i><i class="fl c">📸</i>
+    <div class="pills"><span class="pill">📍 Any public repo</span><span class="pill">⚡ No install</span><span class="pill red">🔥 Live</span></div>
+    <h1><span class="big">GitPics</span><span class="sub">See every image in any GitHub folder</span></h1>
+    <p>GitHub only shows file names. Paste a repo or folder link and get a thumbnail gallery. Free, no login, built for phones.</p></section>
   <form id="f"><input id="u" type="text" placeholder="Paste a GitHub repo or folder link…" autocomplete="off" inputmode="url" aria-label="GitHub link"><button class="go">Show</button></form>
-  <div id="chips">Try:
-    <a href="#https://github.com/Static91/Wallpaper-Collection/tree/main/Mobile%20Wallpapers/1001%20-%201154">Wallpaper-Collection</a>
-    <a href="#https://github.com/VectorZeroAI/Wallpapers/tree/main/abstract">Wallpapers</a></div>
+  <div id="chips"></div>
   <div class="bar" id="bar" style="display:none">
     <span id="count"></span><button id="up">↑ Up</button><span class="sp"></span>
     <button data-s="110">S</button><button data-s="170" class="on">M</button><button data-s="260">L</button>
     <button id="mode">Original ratio</button><button id="share">Copy link</button></div>
   <div id="msg" style="display:none"></div>
   <div id="grid" class="g"></div>
-  <section id="feat">
-    <div class="cards"><div><b>⚡ No install</b><span>Open the site, paste a link. Nothing to set up.</span></div>
-      <div><b>📱 Phone-first</b><span>Swipe through images and download in one tap.</span></div>
-      <div><b>🔒 Private &amp; free</b><span>No login, no tracking. Runs in your browser.</span></div></div>
-    <h2>How to preview images in a GitHub folder</h2>
-    <p style="color:var(--sub);font-size:14px">Copy the folder link from GitHub, paste it above and press Show. Or put this site's address plus <b>#</b> before any GitHub link.</p>
-    <h2>FAQ</h2><div class="faq">
+</main>
+<section id="feat">
+  <div class="wrap"><div class="orange"><h2>3 steps. That's it.</h2>
+    <div class="steps"><div><b>01</b><span>Copy link</span></div><div><b>02</b><span>Paste it</span></div><div><b>03</b><span>Browse</span></div></div></div></div>
+  <div class="teal"><div class="wrap"><h2>Why GitPics?</h2><p>Stop opening files one by one.</p>
+    <div class="cards"><div><i>01</i><b>⚡ No install</b><span>Open the site, paste a link. Nothing to set up.</span></div>
+      <div><i>02</i><b>📱 Phone-first</b><span>Swipe through images and download in one tap.</span></div>
+      <div><i>03</i><b>🔒 Private &amp; free</b><span>No login, no tracking. Runs in your browser.</span></div></div></div></div>
+  <div class="wrap sec"><h2>How to preview images in a GitHub folder</h2>
+    <p>Copy the folder link from GitHub, paste it above and press Show. Or put this site's address plus <b>#</b> before any GitHub link.</p>
+    <h2 style="margin-top:26px">FAQ</h2><div class="faq">
       <details><summary>Does GitPics need a login?</summary><p>No. It works with public repositories and needs no account or install.</p></details>
       <details><summary>Does it work on phones?</summary><p>Yes. It is built mobile-first with swipe navigation and one-tap download.</p></details>
-      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file list shows only generic icons, so GitPics adds a real thumbnail view.</p></details></div>
-  </section>
-</main>
-<footer>GitPics · Not affiliated with GitHub · Images belong to their repo owners</footer>
+      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file list shows only generic icons, so GitPics adds a real thumbnail view.</p></details></div></div>
+</section>
+<footer><b>GitPics</b> · Not affiliated with GitHub · Images belong to their repo owners</footer>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
   <div class="row"><button id="lp">← Prev</button><button id="ld">⬇ Download</button><button id="ln">Next →</button></div></div>
 
@@ -141,7 +196,7 @@ async function show(u){
   try{
     const r=await resolve(t);
     if(!r){say('Couldn\'t find that folder. Is the repo public and the link correct?',1);return}
-    ctx={o:t.o,r:t.r,ref:r.ref,path:r.path};
+    ctx={o:t.o,r:t.r,ref:r.ref,path:r.path};remember();
     const items=r.d.tree;
     const dirs=items.filter(e=>e.type==='tree').sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
     imgs=items.filter(e=>e.type==='blob'&&IMG.test(e.path)).sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
@@ -152,10 +207,10 @@ async function show(u){
       frag.appendChild(a);
     });
     imgs.forEach((e,i)=>{
-      const a=document.createElement('div');a.className='t';
+      const a=document.createElement('div');a.className='t';a.style.setProperty('--d',Math.min(i,24)*35+'ms');
       const im=document.createElement('img');im.loading='lazy';im.alt=e.path;
       const full=raw(ctx,e.path);
-      im.src=thumb(full);
+      im.onload=()=>a.classList.add('ok');im.src=thumb(full);
       im.onerror=()=>{im.onerror=null;im.src=full};
       const n=document.createElement('div');n.className='n';n.textContent=e.path;
       a.append(im,n);a.onclick=()=>openLb(i);frag.appendChild(a);
@@ -194,8 +249,31 @@ addEventListener('hashchange',route);route();
 (function(){const r=document.documentElement,b=document.getElementById('th');
 let t;try{t=localStorage.getItem('gp-theme')}catch(e){}
 const apply=x=>{r.dataset.theme=x;b.textContent=x==='dark'?'☀️':'🌙'};
-apply(t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+apply(t||'light');
 b.onclick=()=>{const x=r.dataset.theme==='dark'?'light':'dark';apply(x);try{localStorage.setItem('gp-theme',x)}catch(e){}}})();
+(function(){const i=document.getElementById('u'),p=['github.com/user/repo/tree/main/wallpapers','github.com/user/photos','Paste a GitHub repo or folder link…'];let k=0;setInterval(()=>{if(document.activeElement!==i&&!i.value){k=(k+1)%p.length;i.placeholder=p[k]}},2800)})();
+(function(){
+const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=x=>x.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SEED=[{u:'https://github.com/Static91/Wallpaper-Collection/tree/main/Mobile%20Wallpapers/1001%20-%201154',l:'Wallpaper-Collection'},{u:'https://github.com/VectorZeroAI/Wallpapers/tree/main/abstract',l:'Wallpapers'}];
+window.remember=function(){
+  const c=ctx,u=c.ref==='HEAD'?`https://github.com/${c.o}/${c.r}`:`https://github.com/${c.o}/${c.r}/tree/${enc(c.ref)}${c.path?'/'+enc(c.path):''}`;
+  const l=c.path?c.path.split('/').pop()+' · '+c.r:c.o+'/'+c.r;
+  const h=(LS.get('gp-hist')||[]).filter(x=>x.u!==u);h.unshift({u,l});LS.set('gp-hist',h.slice(0,8));render(POP)};
+let POP=[];
+async function popular(){
+  const c=LS.get('gp-pop');if(c&&Date.now()-c.t<864e5)return c.items;
+  try{const r=await fetch('https://api.github.com/search/repositories?q=wallpapers+in:name+stars:%3E200&sort=stars&per_page=8');if(!r.ok)throw 0;
+    const j=await r.json();const items=j.items.filter(x=>!x.archived).map(x=>({u:x.html_url,l:x.full_name}));LS.set('gp-pop',{t:Date.now(),items});return items}
+  catch(e){return c?c.items:[]}}
+function render(pop){
+  const rec=LS.get('gp-hist')||[],seen=new Set(rec.map(x=>x.u));
+  const pp=[...SEED,...pop].filter((x,i,a)=>!seen.has(x.u)&&a.findIndex(y=>y.u===x.u)===i).slice(0,10);
+  const row=(t,arr,ex)=>arr.length?`<div class="cr"><span>${t}</span>${arr.map(x=>`<a href="#${x.u}">${esc(x.l)}</a>`).join('')}${ex||''}</div>`:'';
+  $('chips').innerHTML=row('Recent:',rec,'<a href="#" id="clr" style="background:var(--card)">✕ clear</a>')+row('Popular:',pp)}
+$('chips').addEventListener('click',e=>{if(e.target.id==='clr'){e.preventDefault();LS.set('gp-hist',[]);render(POP)}});
+render([]);popular().then(p=>{POP=p;render(p)});
+})();
 </script>
 </body>
 </html>
