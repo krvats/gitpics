@@ -13,7 +13,7 @@
 ![Live](https://img.shields.io/badge/status-live-ff5a1f?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-0b1a33?style=for-the-badge)
 ![No login](https://img.shields.io/badge/login-never-008080?style=for-the-badge)
-![Size](https://img.shields.io/badge/one%20file-no%20build-ffd600?style=for-the-badge&labelColor=0b1a33)
+![Price](https://img.shields.io/badge/price-free%20forever-ffd600?style=for-the-badge&labelColor=0b1a33)
 
 </div>
 
@@ -38,6 +38,8 @@ Paste the folder link into **GitPics** and it turns into a gallery: every image 
 
 ## ⚡ Try it in 10 seconds
 
+> The one and only official GitPics lives at **[gitpics.pages.dev](https://gitpics.pages.dev)**. Nothing to download, nothing to set up. Just open it.
+
 1. Copy any GitHub repo or folder link
 2. Paste it into [GitPics](https://gitpics.pages.dev) and hit **SHOW**
 3. Scroll. Swipe. Download. Done.
@@ -60,20 +62,6 @@ https://gitpics.pages.dev/#https://github.com/leouieda/landsat-wallpapers
 | 🔗 **Shareable links** | Copy a link to any gallery and send it to anyone |
 | 🌗 **Light / dark** | Neo-brutalist theme with a dotted background and a theme toggle |
 | 🔒 **No login, no tracking** | Runs entirely in your browser. No backend, no accounts |
-
-## 🛠️ Host your own (2 minutes, free)
-
-It's **one `index.html`**. No build step, no dependencies.
-
-**Cloudflare Pages** (recommended, unlimited bandwidth)
-1. Fork or upload this repo to your GitHub
-2. Cloudflare → *Workers & Pages* → *Create* → *Pages* → connect the repo
-3. Build command: *(empty)* · Output directory: `/`
-4. Deploy. Done.
-
-**GitHub Pages**: *Settings → Pages → Deploy from branch → `main` / root*.
-
-Then replace `gitpics.pages.dev` in `index.html`, `robots.txt` and `sitemap.xml` with your own address.
 
 ## 🧠 How it works
 
@@ -111,7 +99,7 @@ If you **do** star it:
 
 ## 🤝 Contributing
 
-Found a bug? Got an idea? Open an [issue](../../issues) or send a PR. The whole app is one file, so it's easy to hack on.
+Found a bug? Got an idea? Open an [issue](../../issues) and it will make GitPics better for everyone.
 
 Ideas that would be cool:
 - [ ] Select several images and download them together
@@ -128,7 +116,7 @@ Ideas that would be cool:
 
 ## 📜 License
 
-Released under the [MIT License](LICENSE). Use it, fork it, ship it, just keep the copyright notice.
+Released under the [MIT License](LICENSE).
 
 <div align="center">
 
