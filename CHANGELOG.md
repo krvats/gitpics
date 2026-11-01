@@ -11,3 +11,6 @@
 
 ## 1.0.1
 - The GitPics logo in the header now takes you back to the home page
+
+## 1.0.2
+- Fixed the "paste a link" note overlapping the popular and recent chips

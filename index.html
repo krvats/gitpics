@@ -52,7 +52,7 @@ form{display:flex;gap:8px;background:var(--card);border:3px solid var(--ink);bor
 form:focus-within{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--ye),9px 9px 0 3px var(--ink)}
 input[type=text]{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font:600 16px 'Space Grotesk',system-ui;padding:10px}
 button.go{background:var(--or);color:#fff;text-transform:uppercase;padding:0 18px;box-shadow:3px 3px 0 var(--ink)}
-#chips{display:flex;flex-direction:column;gap:8px;margin:16px 0 4px;font-size:12px;font-weight:700;text-transform:uppercase;align-items:center;animation:fadeup .6s .35s backwards}
+#chips{display:flex;flex-direction:column;gap:8px;margin:0 0 4px;font-size:12px;font-weight:700;text-transform:uppercase;align-items:center;animation:fadeup .6s .35s backwards}
 #chips .cr{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 #chips a{color:var(--text);text-decoration:none;background:var(--ye);color:#0b1a33;border:2.5px solid var(--ink);border-radius:99px;padding:3px 11px;box-shadow:2px 2px 0 var(--ink);transition:transform .12s}
 #chips a:hover{transform:translate(-2px,-2px) rotate(-2deg)}
@@ -171,7 +171,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;op
 .hand{font-family:'Caveat','Comic Sans MS',cursive;font-weight:700}
 #hero .big{display:inline-block;rotate:-2deg}
 #hero .sub u{text-decoration:none;background:linear-gradient(transparent 58%,var(--ye) 58%,var(--ye) 92%,transparent 92%);padding:0 4px}
-.note{font-family:'Caveat',cursive;font-size:1.45rem;font-weight:700;color:var(--rd);rotate:-4deg;margin:10px 0 0 6px;display:flex;align-items:center;gap:6px;animation:fadeup .6s .45s backwards}
+.note{font-family:'Caveat',cursive;font-size:1.45rem;font-weight:700;color:var(--rd);rotate:-2deg;margin:14px 0 30px 6px;display:flex;align-items:center;gap:6px;animation:fadeup .6s .45s backwards}
 .note svg{width:44px;height:34px;stroke:var(--rd);fill:none;stroke-width:3;stroke-linecap:round;rotate:-12deg}
 .top a.gh{font-weight:700;font-size:13px;color:var(--text);text-decoration:none;border:3px solid var(--ink);background:var(--ye);color:#0b1a33;border-radius:8px;padding:6px 11px;box-shadow:3px 3px 0 var(--ink);margin-left:auto;margin-right:8px;transition:transform .12s}
 .top a.gh:hover{transform:rotate(-3deg) translateY(-2px)}
@@ -297,7 +297,7 @@ kbd{font:700 12px ui-monospace,monospace;background:var(--ye);color:#0b1a33;bord
   </div>
 </section>
 
-<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> v1.0.1 · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
+<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> v1.0.2 · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
 <div id="kb"><div class="box"><h3>Shortcuts</h3>
 <p>Previous / next <span><kbd>←</kbd><kbd>→</kbd></span></p><p>Play / pause slideshow <span><kbd>Space</kbd></span></p><p>Download image <span><kbd>D</kbd></span></p><p>Open on GitHub <span><kbd>G</kbd></span></p><p>Copy image link <span><kbd>C</kbd></span></p><p>Focus filter <span><kbd>/</kbd></span></p><p>Close <span><kbd>Esc</kbd></span></p><p>This panel <span><kbd>?</kbd></span></p></div></div>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
