@@ -50,6 +50,10 @@ https://gitpics.pages.dev/#https://github.com/leouieda/landsat-wallpapers
 - **Folder navigation.** Dive into subfolders and back out. S / M / L grid sizes.
 - **History.** Repos you've opened are remembered in your own browser only.
 - **Shareable.** Every gallery has a link you can copy.
+- **Filter and sort.** Search names, flip the order, sort by size, or shuffle.
+- **Select and zip.** Tick the ones you want, or zip a whole folder, built in your browser.
+- **Slideshow.** Autoplay through a folder.
+- **Shortcuts.** Press `?` on the site to see them. You can also paste a link anywhere on the page.
 - **Light and dark.**
 
 ## Honest limits
@@ -69,11 +73,11 @@ The whole project is one HTML file. No build step, no npm, no framework. Open `i
 
 ### Things that still need building
 
-- [ ] Multi-select and batch download
-- [ ] Keyboard shortcut cheat sheet
-- [ ] Slideshow / autoplay mode
-- [ ] Better handling of huge folders (1,000+ images)
-- [ ] Animated WebP thumbnails
+- [ ] Huge folders (1,000+ images) without the partial list
+- [ ] Animated WebP and GIF thumbnails
+- [ ] Optional GitHub token for a higher rate limit
+- [ ] Cancel and progress bar for big zips
+- [ ] Translations
 
 Pick one and say so in an [issue](https://github.com/krvats/gitpics/issues/new/choose) so we don't double up. Or bring your own idea.
 

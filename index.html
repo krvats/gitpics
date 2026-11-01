@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://gitpics.pages.dev/">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://gitpics.pages.dev/og.jpg"><meta name="twitter:title" content="GitPics – GitHub Image Gallery">
 <meta name="twitter:description" content="Paste a GitHub link, get a thumbnail gallery of every image.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23ff5a1f'/%3E%3Crect x='20' y='24' width='60' height='44' fill='%23fff' stroke='%230b1a33' stroke-width='6'/%3E%3C/svg%3E">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GitPics","url":"https://gitpics.pages.dev/","codeRepository":"https://github.com/krvats/gitpics","author":{"@type":"Person","name":"Krishna","url":"https://github.com/krvats"},"applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Preview every image in any GitHub repo or folder as a thumbnail gallery."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I preview images in a GitHub folder?","acceptedAnswer":{"@type":"Answer","text":"Paste the GitHub repo or folder link into GitPics and press Show. Every image appears as a thumbnail."}},{"@type":"Question","name":"Does GitPics need a login?","acceptedAnswer":{"@type":"Answer","text":"No. It works with public repositories and needs no account or install."}},{"@type":"Question","name":"Does it work on phones?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is built mobile-first with swipe navigation and one-tap download."}}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
@@ -130,7 +130,7 @@ footer b{color:var(--ye)}
 .m .t .n{position:static}
 .g .t .n{position:absolute;left:0;right:0;bottom:0}
 
-/* ── contribute section ── */
+/* contribute section */
 #contrib{padding:46px 0 54px;background:var(--bg);border-top:3.5px solid var(--ink)}
 .contrib-lede{font-size:1rem;font-weight:600;color:var(--sub);max-width:580px;margin-bottom:28px;line-height:1.6}
 .contrib-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:30px}
@@ -149,7 +149,7 @@ footer b{color:var(--ye)}
 .ccard p{font-size:13px;color:var(--sub);font-weight:500;line-height:1.5;margin-bottom:10px}
 .ccard a{font-weight:700;font-size:13px;color:var(--text);text-decoration:none;border-bottom:2.5px solid var(--or);padding-bottom:1px}
 .ccard a:hover{color:var(--or)}
-.badge-zone{background:var(--ink);color:#f4f1ea;border-radius:12px;padding:22px 20px;border:3px solid var(--ink);position:relative;overflow:hidden}
+.badge-zone{background:#0b1a33;color:#f4f1ea;border-radius:12px;padding:22px 20px;border:3px solid var(--ink);position:relative;overflow:hidden}
 :root[data-theme=dark] .badge-zone{border-color:#ffffff40}
 .badge-zone::before{content:'';position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:var(--or);opacity:.12}
 .badge-zone h3{font-size:1.05rem;text-transform:uppercase;margin-bottom:7px;position:relative}
@@ -165,7 +165,7 @@ footer b{color:var(--ye)}
 .txt-link:hover{color:var(--or);transform:none;box-shadow:none}
 .txt-link:active{transform:none;box-shadow:none}
 
-/* ── handmade layer: paper, marker, tape, wobble ── */
+/* handmade layer: paper, marker, tape, wobble */
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 :root[data-theme=dark] body::before{mix-blend-mode:screen;opacity:.05}
 .hand{font-family:'Caveat','Comic Sans MS',cursive;font-weight:700}
@@ -196,21 +196,38 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;op
 .cta{display:inline-block;font-weight:800;text-transform:uppercase;font-size:13px;text-decoration:none;color:#fff;background:var(--or);border:3px solid var(--ink);border-radius:8px;box-shadow:4px 4px 0 var(--ink);padding:10px 16px;transition:transform .12s,box-shadow .12s}
 .cta.alt{background:var(--card);color:var(--text)}
 .cta:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:6px 6px 0 var(--ink)}
+
+:root[data-theme=dark] .badge-zone{background:#12294f;border-color:#f4f1ea55}
+.badge-zone h3{color:#f4f1ea}
+.bar input,.bar select{font:600 13px 'Space Grotesk',system-ui;border:3px solid var(--ink);border-radius:8px;background:var(--card);color:var(--text);padding:4px 9px;box-shadow:3px 3px 0 var(--ink);min-width:0}
+.bar input{width:130px}
+#th,#kbb{padding:5px 10px}
+.t.sel{outline:4px solid var(--or);outline-offset:-4px}
+.t.sel::after{content:"✓";position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;background:var(--or);color:#fff;font-weight:800;display:grid;place-items:center;border:2px solid #fff}
+#lb .row{flex-wrap:wrap;justify-content:center}
+#kb{position:fixed;inset:0;z-index:70;display:none;place-items:center;background:#0b1a33d9;padding:16px}
+#kb.open{display:grid}
+#kb .box{background:var(--card);color:var(--text);border:3px solid var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--or);padding:18px 22px;max-width:360px;width:100%}
+#kb h3{text-transform:uppercase;margin-bottom:10px}
+#kb p{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:14px;font-weight:600}
+kbd{font:700 12px ui-monospace,monospace;background:var(--ye);color:#0b1a33;border:2px solid var(--ink);border-radius:5px;padding:1px 6px;margin-left:3px}
 </style>
 </head>
 <body>
 <div class="strip">one .html file · no login · no install · come build it with me</div>
-<header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">open source</span></div><a class="gh" href="https://github.com/krvats/gitpics" target="_blank" rel="noopener">★ star on GitHub</a><button id="th" aria-label="Toggle theme">🌙</button></header>
+<header class="top"><div class="in"><span class="logo">GitPics</span><span class="tag">v1.0</span></div><a class="gh" href="https://github.com/krvats/gitpics" target="_blank" rel="noopener">★ star on GitHub</a><button id="kbb" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button><button id="th" aria-label="Toggle theme">Dark</button></header>
 <main>
-  <section id="hero"><i class="fl a">🌄</i><i class="fl b">🎨</i><i class="fl c">📸</i>
-    <div class="pills"><span class="pill">📍 Any public repo</span><span class="pill">⚡ No install</span><span class="pill red">🔥 Live</span></div>
+  <section id="hero"><i class="fl a">★</i><i class="fl b">✎</i><i class="fl c">●</i>
+    <div class="pills"><span class="pill">Any public repo</span><span class="pill">No install</span><span class="pill red">Live</span></div>
     <h1><span class="big">GitPics</span><span class="sub">See every image in any <u>GitHub folder</u></span></h1>
     <p>I kept opening GitHub folders full of wallpapers and getting a wall of filenames. So I made this: paste the link, see the actual pictures, swipe through, save the ones you like.</p></section>
   <form id="f"><input id="u" type="text" placeholder="Paste a GitHub repo or folder link…" autocomplete="off" inputmode="url" aria-label="GitHub link"><button class="go">Show</button></form>
-  <div class="note"><svg viewBox="0 0 44 34"><path d="M40 30C28 28 14 22 6 6M6 6l1 12M6 6l11 3"/></svg>paste a link. that's the whole trick.</div>
+  <div class="note" id="note"><svg viewBox="0 0 44 34"><path d="M40 30C28 28 14 22 6 6M6 6l1 12M6 6l11 3"/></svg>paste a link. that's the whole trick.</div>
   <div id="chips"></div>
   <div class="bar" id="bar" style="display:none">
     <span id="count"></span><button id="up">↑ Up</button><span class="sp"></span>
+    <input id="flt" type="search" placeholder="Filter names" aria-label="Filter by name"><select id="srt" aria-label="Sort"><option value="name">A to Z</option><option value="za">Z to A</option><option value="size">Biggest first</option><option value="rand">Shuffle</option></select>
+    <button id="sm">Select</button><button id="zp">Zip all</button><button id="pl">Play</button>
     <button data-s="110">S</button><button data-s="170" class="on">M</button><button data-s="260">L</button>
     <button id="mode">Square crop</button><button id="share">Copy link</button></div>
   <div id="msg" style="display:none"></div>
@@ -220,16 +237,16 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;op
 <section id="feat">
   <div class="wrap"><div class="orange"><h2>From filename list to gallery in ten seconds.</h2>
     <div class="steps"><div><b>copy</b><span>any github link</span></div><div><b>paste</b><span>it here</span></div><div><b>scroll</b><span>you're in</span></div></div></div></div>
-  <div class="teal"><div class="wrap"><h2>What you actually get</h2><p>The things that matter when you're trying to browse 500 wallpapers without losing your mind.</p>
+  <div class="teal"><div class="wrap"><h2>What it does</h2><p>Made for browsing 500 wallpapers without going numb.</p>
     <div class="cards"><div><i>↕</i><b>Real aspect ratios</b><span>Portrait stays portrait, ultrawide stays ultrawide. Nothing gets cropped unless you tell it to.</span></div>
-      <div><i>∅</i><b>Zero setup</b><span>Open a tab, paste a link. No extension, no sign-up, nothing to remember next time.</span></div>
+      <div><i>∅</i><b>Nothing to install</b><span>Open a tab, paste a link. No extension, no sign-up, nothing to remember next time.</span></div>
       <div><i>⌂</i><b>Stays in your browser</b><span>Your history sits in your own browser. There is no server of mine to send it to.</span></div></div></div></div>
   <div class="wrap sec"><h2>How to preview images in a GitHub folder</h2>
     <p>Copy any GitHub repo or folder URL, paste it into the box above and hit Show. Or prefix any GitHub link with <b>https://gitpics.pages.dev/#</b> and open it directly.</p>
     <h2 style="margin-top:26px">FAQ</h2><div class="faq">
       <details><summary>Does GitPics need a login?</summary><p>No. It works with public repositories and needs no account or install.</p></details>
       <details><summary>Does it work on phones?</summary><p>Yes. It is built mobile-first with swipe navigation and one-tap download.</p></details>
-      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file browser is built for code, not images. It shows generic file icons for every extension — GitPics adds the visual layer that's missing.</p></details>
+      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file browser is built for code, not images. It shows generic file icons for every extension, GitPics adds the visual layer that's missing.</p></details>
       <details><summary>Who built this?</summary><p>Me, Krishna. I got tired of clicking filenames one by one and wrote the fix. It's one HTML file with no build step, so if you want to add something, you really can.</p></details>
       <details><summary>Can I contribute?</summary><p>Please do. The entire codebase is <code>index.html</code>. Open it, change something, send a pull request. First PRs are very welcome, and I'll help you get yours merged.</p></details></div></div>
 </section>
@@ -256,18 +273,18 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;op
       <div>
         <div class="road-label">Still unbuilt · grab one</div>
         <ul class="road">
-          <li>Multi-select + batch download</li>
-          <li>Keyboard shortcut cheat sheet</li>
-          <li>Slideshow / autoplay mode</li>
-          <li>Better handling for huge folders (&gt; 1,000 images)</li>
-          <li>Animated WebP thumbnails</li>
+          <li>Huge folders (1,000+ images) without the partial list</li>
+          <li>Animated WebP and GIF thumbnails</li>
+          <li>Optional GitHub token for a higher rate limit</li>
+          <li>Cancel and progress bar for big zips</li>
+          <li>Translations</li>
         </ul>
         <p class="clink">Have a different idea? <a href="https://github.com/krvats/gitpics/issues/new/choose" target="_blank" rel="noopener">Tell me about it →</a></p>
       </div>
       <div>
         <div class="road-label">How to jump in</div>
-        <div class="ccard"><h4>🐛 Found a bug?</h4><p>Say what you saw and what you expected. A link to the repo that broke it makes it ten times faster to fix.</p><a href="https://github.com/krvats/gitpics/issues/new/choose" target="_blank" rel="noopener">Report it →</a></div>
-        <div class="ccard"><h4>🔧 Want to build something?</h4><p>Fork, edit <code style="background:var(--ye);color:#0b1a33;padding:1px 4px;border-radius:3px">index.html</code>, open a pull request. Read the short <a href="https://github.com/krvats/gitpics/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contributing guide</a> first if you like.</p><a href="https://github.com/krvats/gitpics/pulls" target="_blank" rel="noopener">See pull requests →</a></div>
+        <div class="ccard"><h4>Found a bug?</h4><p>Say what you saw and what you expected. A link to the repo that broke it makes it ten times faster to fix.</p><a href="https://github.com/krvats/gitpics/issues/new/choose" target="_blank" rel="noopener">Report it →</a></div>
+        <div class="ccard"><h4>Want to build something?</h4><p>Fork, edit <code style="background:var(--ye);color:#0b1a33;padding:1px 4px;border-radius:3px">index.html</code>, open a pull request. Read the short <a href="https://github.com/krvats/gitpics/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contributing guide</a> first if you like.</p><a href="https://github.com/krvats/gitpics/pulls" target="_blank" rel="noopener">See pull requests →</a></div>
       </div>
     </div>
     <div class="badge-zone">
@@ -280,11 +297,13 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;op
   </div>
 </section>
 
-<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
+<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> v1.0.0 · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
+<div id="kb"><div class="box"><h3>Shortcuts</h3>
+<p>Previous / next <span><kbd>←</kbd><kbd>→</kbd></span></p><p>Play / pause slideshow <span><kbd>Space</kbd></span></p><p>Download image <span><kbd>D</kbd></span></p><p>Open on GitHub <span><kbd>G</kbd></span></p><p>Copy image link <span><kbd>C</kbd></span></p><p>Focus filter <span><kbd>/</kbd></span></p><p>Close <span><kbd>Esc</kbd></span></p><p>This panel <span><kbd>?</kbd></span></p></div></div>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
-  <div class="row"><button id="lp">← Prev</button><button id="ld">⬇ Download</button><button id="ln">Next →</button></div></div>
+  <div class="row"><button id="lp">← Prev</button><button id="lpl">Play</button><button id="ld">Download</button><button id="lg">On GitHub</button><button id="ln">Next →</button></div></div>
 <script>
-/* ── GitPics repo URL — update this before deploying your fork ──────── */
+/* ── GitPics repo URL, update this before deploying your fork ──────── */
 var GITHUB_REPO = 'https://github.com/krvats/gitpics';
 function ghOpen(path){
   var base = GITHUB_REPO;
@@ -296,7 +315,7 @@ function ghOpen(path){
 const $=id=>document.getElementById(id);
 const IMG=/\.(png|jpe?g|gif|webp|avif|bmp|svg)$/i;
 const enc=s=>s.split('/').map(encodeURIComponent).join('/');
-let ctx=null,imgs=[],cur=0,mode='m';
+let ctx=null,imgs=[],all=[],sel=new Set(),selMode=false,sortKey='name',q='',nd=0,pt=null,cur=0,mode='m';
 
 function parse(u){
   let x;try{x=new URL(u.trim().startsWith('http')?u.trim():'https://'+u.trim())}catch{return null}
@@ -325,9 +344,66 @@ async function resolve(t){
 }
 const raw=(c,name)=>`https://raw.githubusercontent.com/${c.o}/${c.r}/${enc(c.ref)}/${enc(c.path?c.path+'/'+name:name)}`;
 const thumb=url=>`https://wsrv.nl/?url=${encodeURIComponent(url)}&w=420&output=webp&q=70`;
-function land(on){['hero','feat','chips'].forEach(i=>$(i).style.display=on?'':'none')}
+function land(on){['hero','feat','chips','note'].forEach(i=>$(i).style.display=on?'':'none')}
 const say=(t,err)=>{const m=$('msg');m.style.display=t?'block':'none';m.textContent=t||'';m.className=err?'err':''};
 
+function save(b,name){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5e3)}
+const crcT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc32=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
+function buildZip(files){
+  const te=new TextEncoder(),parts=[],cd=[];let off=0;
+  for(const f of files){
+    const nm=te.encode(f.name),u=f.data,c=crc32(u),h=new DataView(new ArrayBuffer(30));
+    h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x800,true);h.setUint32(14,c,true);h.setUint32(18,u.length,true);h.setUint32(22,u.length,true);h.setUint16(26,nm.length,true);
+    parts.push(h.buffer,nm,u);
+    const d=new DataView(new ArrayBuffer(46));
+    d.setUint32(0,0x02014b50,true);d.setUint16(4,20,true);d.setUint16(6,20,true);d.setUint16(8,0x800,true);d.setUint32(16,c,true);d.setUint32(20,u.length,true);d.setUint32(24,u.length,true);d.setUint16(28,nm.length,true);d.setUint32(42,off,true);
+    cd.push(d.buffer,nm);off+=30+nm.length+u.length;
+  }
+  const len=cd.reduce((a,b)=>a+b.byteLength,0),e=new DataView(new ArrayBuffer(22));
+  e.setUint32(0,0x06054b50,true);e.setUint16(8,files.length,true);e.setUint16(10,files.length,true);e.setUint32(12,len,true);e.setUint32(16,off,true);
+  return new Blob([...parts,...cd,e.buffer],{type:'application/zip'});
+}
+let zipping=false;
+async function zipSel(){
+  const list=sel.size?imgs.filter(e=>sel.has(e.path)):imgs;
+  if(zipping||!list.length)return;
+  if(list.length>300){say('That is a lot of images for one zip. Select up to 300.',1);return}
+  zipping=true;const files=[];let n=0,fail=0;
+  for(const e of list){
+    say(`Zipping ${++n} of ${list.length}…`);
+    try{const r=await fetch(raw(ctx,e.path));if(!r.ok)throw 0;files.push({name:e.path,data:new Uint8Array(await r.arrayBuffer())})}catch{fail++}
+  }
+  zipping=false;
+  if(!files.length){say('Could not download any of those images.',1);return}
+  save(buildZip(files),ctx.r+'-images.zip');
+  say(fail?`Zip saved. ${fail} image${fail>1?'s':''} could not be fetched.`:'');
+}
+function upz(){$('zp').textContent=sel.size?`Zip (${sel.size})`:'Zip all';$('sm').textContent=selMode?'Done':'Select';$('sm').classList.toggle('on',selMode)}
+function play(on){clearInterval(pt);pt=null;$('lpl').textContent='Play';$('pl').textContent='Play';if(on){pt=setInterval(()=>openLb(cur+1,1),3000);$('lpl').textContent='Pause'}}
+function draw(){
+  const t=q.trim().toLowerCase();
+  imgs=all.filter(e=>!t||e.path.toLowerCase().includes(t));
+  if(sortKey==='za')imgs.reverse();
+  else if(sortKey==='size')imgs.sort((a,b)=>(b.size||0)-(a.size||0));
+  else if(sortKey==='rand')imgs.sort(()=>Math.random()-.5);
+  const g=$('grid'),frag=document.createDocumentFragment();g.innerHTML='';
+  imgs.forEach((e,i)=>{
+    const a=document.createElement('div');a.className='t'+(sel.has(e.path)?' sel':'');a.tabIndex=0;a.style.setProperty('--d',Math.min(i,24)*35+'ms');
+    const im=document.createElement('img');im.loading='lazy';im.alt=e.path;
+    const full=raw(ctx,e.path);
+    im.onload=()=>a.classList.add('ok');im.src=thumb(full);
+    im.onerror=()=>{im.onerror=null;im.src=full};
+    const n=document.createElement('div');n.className='n';n.textContent=e.path;
+    a.append(im,n);
+    const act=()=>{if(selMode){sel.has(e.path)?sel.delete(e.path):sel.add(e.path);a.classList.toggle('sel');upz()}else openLb(i)};
+    a.onclick=act;a.onkeydown=k=>{if(k.key==='Enter')act()};
+    frag.appendChild(a);
+  });
+  g.appendChild(frag);
+  $('count').textContent=`${imgs.length}${t?' of '+all.length:''} images`+(nd?` · ${nd} folders`:'');
+  upz();
+}
 async function show(u){
   $('u').value=u;
   const t=parse(u);
@@ -340,28 +416,19 @@ async function show(u){
     ctx={o:t.o,r:t.r,ref:r.ref,path:r.path};remember();
     const items=r.d.tree;
     const dirs=items.filter(e=>e.type==='tree').sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
-    imgs=items.filter(e=>e.type==='blob'&&IMG.test(e.path)).sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
+    all=items.filter(e=>e.type==='blob'&&IMG.test(e.path)).sort((a,b)=>a.path.localeCompare(b.path,undefined,{numeric:true}));
+    sel.clear();selMode=false;q='';sortKey='name';$('flt').value='';$('srt').value='name';nd=dirs.length;
     const g=$('grid');const frag=document.createDocumentFragment();const df=document.createDocumentFragment();
     dirs.forEach(d=>{
-      const a=document.createElement('div');a.className='t f';a.textContent='📁 '+d.path;
+      const a=document.createElement('div');a.className='t f';a.textContent='Folder: '+d.path;
       a.onclick=()=>go(`https://github.com/${ctx.o}/${ctx.r}/tree/${enc(ctx.ref)}/${enc(ctx.path?ctx.path+'/'+d.path:d.path)}`);
       df.appendChild(a);
     });
-    imgs.forEach((e,i)=>{
-      const a=document.createElement('div');a.className='t';a.style.setProperty('--d',Math.min(i,24)*35+'ms');
-      const im=document.createElement('img');im.loading='lazy';im.alt=e.path;
-      const full=raw(ctx,e.path);
-      im.onload=()=>a.classList.add('ok');im.src=thumb(full);
-      im.onerror=()=>{im.onerror=null;im.src=full};
-      const n=document.createElement('div');n.className='n';n.textContent=e.path;
-      a.append(im,n);a.onclick=()=>openLb(i);frag.appendChild(a);
-    });
-    g.appendChild(frag);$('dirs').appendChild(df);
+    draw();$('dirs').appendChild(df);
     $('bar').style.display='flex';
-    $('count').textContent=`${imgs.length} images`+(dirs.length?` · ${dirs.length} folders`:'');
     $('up').style.display=ctx.path?'':'none';
     if(r.d.truncated)say('Folder is huge; GitHub returned a partial list.');
-    else say(!imgs.length&&!dirs.length?'No images here.':!imgs.length?'No images in this folder. Open a subfolder.':'');
+    else say(!all.length&&!dirs.length?'No images here.':!all.length?'No images in this folder. Open a subfolder.':'');
   }catch(e){say(e.message||'Something went wrong.',1)}
 }
 function go(u){location.hash=u}
@@ -378,7 +445,7 @@ function openLb(i,dir){
   hi.onerror=()=>{const h2=new Image();h2.onload=()=>done(full);h2.src=full};hi.src=disp(full);
   [cur+1,cur-1].forEach(k=>{const n=imgs[(k+imgs.length)%imgs.length];if(n)new Image().src=disp(raw(ctx,n.path))});
 }
-$('lx').onclick=()=>{tok++;$('lb').classList.remove('open');$('li').removeAttribute('src')};
+$('lx').onclick=()=>{play(0);tok++;$('lb').classList.remove('open');$('li').removeAttribute('src')};
 $('lp').onclick=()=>openLb(cur-1,-1);$('ln').onclick=()=>openLb(cur+1,1);
 $('ld').onclick=async()=>{
   const e=imgs[cur],url=raw(ctx,e.path);
@@ -403,12 +470,34 @@ $('mode').onclick=()=>{mode=mode==='g'?'m':'g';$('grid').className=mode;$('mode'
 $('share').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$('share').textContent='Copied ✓';setTimeout(()=>$('share').textContent='Copy link',1500)}catch{}};
 function route(){const h=decodeURIComponent(location.hash.slice(1));
   if(h)show(h);else{land(1);$('grid').innerHTML='';$('dirs').innerHTML='';$('bar').style.display='none';say('')}}
+$('flt').oninput=e=>{q=e.target.value;draw()};
+$('srt').onchange=e=>{sortKey=e.target.value;draw()};
+$('sm').onclick=()=>{selMode=!selMode;if(!selMode)sel.clear();draw()};
+$('zp').onclick=zipSel;
+$('pl').onclick=()=>{if(imgs.length){openLb(0);play(1)}};
+$('lpl').onclick=()=>play(!pt);
+$('lg').onclick=()=>{const e=imgs[cur];window.open(`https://github.com/${ctx.o}/${ctx.r}/blob/${enc(ctx.ref)}/${enc(ctx.path?ctx.path+'/'+e.path:e.path)}`,'_blank','noopener')};
+$('kbb').onclick=()=>$('kb').classList.toggle('open');
+$('kb').onclick=e=>{if(e.target===$('kb'))$('kb').classList.remove('open')};
+addEventListener('keydown',e=>{
+  if(e.target.matches&&e.target.matches('input,select,textarea'))return;
+  const k=e.key,open=$('lb').classList.contains('open');
+  if(k==='?'){$('kb').classList.toggle('open');return}
+  if(k==='Escape'&&$('kb').classList.contains('open')){$('kb').classList.remove('open');return}
+  if(k==='/'&&!open){e.preventDefault();$('flt').focus();return}
+  if(!open)return;
+  if(k===' '){e.preventDefault();play(!pt)}
+  else if(k==='d'||k==='D')$('ld').click();
+  else if(k==='g'||k==='G')$('lg').click();
+  else if(k==='c'||k==='C'){if(navigator.clipboard)navigator.clipboard.writeText(raw(ctx,imgs[cur].path))}
+});
+addEventListener('paste',e=>{if(e.target.matches&&e.target.matches('input'))return;const t=((e.clipboardData&&e.clipboardData.getData('text'))||'').trim();if(parse(t))go(t)});
 addEventListener('hashchange',route);route();
 </script>
 <script>
 (function(){const r=document.documentElement,b=document.getElementById('th');
 let t;try{t=localStorage.getItem('gp-theme')}catch(e){}
-const apply=x=>{r.dataset.theme=x;b.textContent=x==='dark'?'☀️':'🌙'};
+const apply=x=>{r.dataset.theme=x;b.textContent=x==='dark'?'Light':'Dark'};
 apply(t||'light');
 b.onclick=()=>{const x=r.dataset.theme==='dark'?'light':'dark';apply(x);try{localStorage.setItem('gp-theme',x)}catch(e){}}})();
 (function(){const i=document.getElementById('u'),p=['github.com/user/repo/tree/main/wallpapers','github.com/user/photos','Paste a GitHub repo or folder link…'];let k=0;setInterval(()=>{if(document.activeElement!==i&&!i.value){k=(k+1)%p.length;i.placeholder=p[k]}},2800)})();
