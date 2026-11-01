@@ -17,8 +17,8 @@
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://gitpics.pages.dev/og.jpg"><meta name="twitter:title" content="GitPics – GitHub Image Gallery">
 <meta name="twitter:description" content="Paste a GitHub link, get a thumbnail gallery of every image.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GitPics","url":"https://gitpics.pages.dev/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Preview every image in any GitHub repo or folder as a thumbnail gallery."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I preview images in a GitHub folder?","acceptedAnswer":{"@type":"Answer","text":"Paste the GitHub repo or folder link into GitPics and press Show. Every image appears as a thumbnail."}},{"@type":"Question","name":"Does GitPics need a login?","acceptedAnswer":{"@type":"Answer","text":"No. It works with public repositories and needs no account or install."}},{"@type":"Question","name":"Does it work on phones?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is built mobile-first with swipe navigation and one-tap download."}}]}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GitPics","url":"https://gitpics.pages.dev/","codeRepository":"https://github.com/krvats/gitpics","author":{"@type":"Person","name":"Krishna","url":"https://github.com/krvats"},"applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Preview every image in any GitHub repo or folder as a thumbnail gallery."},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I preview images in a GitHub folder?","acceptedAnswer":{"@type":"Answer","text":"Paste the GitHub repo or folder link into GitPics and press Show. Every image appears as a thumbnail."}},{"@type":"Question","name":"Does GitPics need a login?","acceptedAnswer":{"@type":"Answer","text":"No. It works with public repositories and needs no account or install."}},{"@type":"Question","name":"Does it work on phones?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is built mobile-first with swipe navigation and one-tap download."}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f8f6f1;--card:#fff;--text:#0b1a33;--sub:#4b5a75;--ink:#0b1a33;--dot:#0b1a3366;--or:#ff5a1f;--ye:#ffd600;--te:#008080;--rd:#e63946;--w:170px}
 :root[data-theme=dark]{--bg:#0b1a33;--card:#12294f;--text:#f4f1ea;--sub:#9fb0cf;--ink:#f4f1ea;--dot:#ffffff2e}
@@ -164,17 +164,50 @@ footer b{color:var(--ye)}
 .txt-link{background:none;border:none;box-shadow:none;border-radius:0;border-bottom:2.5px solid var(--or);padding:0 0 1px;font-size:13px;color:var(--text);cursor:pointer;font-weight:700;font-family:inherit}
 .txt-link:hover{color:var(--or);transform:none;box-shadow:none}
 .txt-link:active{transform:none;box-shadow:none}
+
+/* ── handmade layer: paper, marker, tape, wobble ── */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root[data-theme=dark] body::before{mix-blend-mode:screen;opacity:.05}
+.hand{font-family:'Caveat','Comic Sans MS',cursive;font-weight:700}
+#hero .big{display:inline-block;rotate:-2deg}
+#hero .sub u{text-decoration:none;background:linear-gradient(transparent 58%,var(--ye) 58%,var(--ye) 92%,transparent 92%);padding:0 4px}
+.note{font-family:'Caveat',cursive;font-size:1.45rem;font-weight:700;color:var(--rd);rotate:-4deg;margin:10px 0 0 6px;display:flex;align-items:center;gap:6px;animation:fadeup .6s .45s backwards}
+.note svg{width:44px;height:34px;stroke:var(--rd);fill:none;stroke-width:3;stroke-linecap:round;rotate:-12deg}
+.top a.gh{font-weight:700;font-size:13px;color:var(--text);text-decoration:none;border:3px solid var(--ink);background:var(--ye);color:#0b1a33;border-radius:8px;padding:6px 11px;box-shadow:3px 3px 0 var(--ink);margin-left:auto;margin-right:8px;transition:transform .12s}
+.top a.gh:hover{transform:rotate(-3deg) translateY(-2px)}
+.top{flex-wrap:wrap}
+.orange{border-radius:14px 6px 16px 8px/8px 16px 6px 14px}
+.cards div:nth-child(1){rotate:-1deg}.cards div:nth-child(2){rotate:.8deg}.cards div:nth-child(3){rotate:-.6deg}
+.cards div{border-radius:6px 14px 8px 16px}
+.cards div::before,.ccard::before{content:"";position:absolute;top:-9px;left:50%;width:62px;height:18px;margin-left:-31px;background:#ffd600bb;rotate:-3deg;border-left:2px dashed #0b1a3340;border-right:2px dashed #0b1a3340}
+.ccard{position:relative}
+.ccard:nth-child(odd){rotate:-.7deg}.ccard:nth-child(even){rotate:.6deg}
+.g .t:nth-child(3n+1),.m .t:nth-child(4n+1){rotate:-.8deg}.g .t:nth-child(3n),.m .t:nth-child(4n+3){rotate:.9deg}
+.t:hover{rotate:0deg}
+.faq details{border-radius:8px 14px 8px 12px}
+.faq details:nth-child(even){rotate:.4deg}.faq details:nth-child(odd){rotate:-.3deg}
+.wrap h2 u,#contrib h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--or) 60%,var(--or) 90%,transparent 90%);padding:0 3px;color:inherit}
+.sign{font-family:'Caveat',cursive;font-size:1.6rem;color:var(--ye);display:block;margin-bottom:4px}
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 26px}
+.ways div{background:var(--ye);color:#0b1a33;border:2.5px solid var(--ink);border-radius:8px;box-shadow:3px 3px 0 var(--ink);padding:10px 12px;font-size:13px;font-weight:600;line-height:1.35}
+.ways div:nth-child(even){rotate:1deg}.ways div:nth-child(odd){rotate:-1deg}
+.ways b{display:block;font-family:'Caveat',cursive;font-size:1.35rem;line-height:1}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 30px}
+.cta{display:inline-block;font-weight:800;text-transform:uppercase;font-size:13px;text-decoration:none;color:#fff;background:var(--or);border:3px solid var(--ink);border-radius:8px;box-shadow:4px 4px 0 var(--ink);padding:10px 16px;transition:transform .12s,box-shadow .12s}
+.cta.alt{background:var(--card);color:var(--text)}
+.cta:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:6px 6px 0 var(--ink)}
 </style>
 </head>
 <body>
-<div class="strip">one .html file · no login · no install · open source</div>
-<header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">open source</span></div><button id="th" aria-label="Toggle theme">🌙</button></header>
+<div class="strip">one .html file · no login · no install · come build it with me</div>
+<header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">open source</span></div><a class="gh" href="https://github.com/krvats/gitpics" target="_blank" rel="noopener">★ star on GitHub</a><button id="th" aria-label="Toggle theme">🌙</button></header>
 <main>
   <section id="hero"><i class="fl a">🌄</i><i class="fl b">🎨</i><i class="fl c">📸</i>
     <div class="pills"><span class="pill">📍 Any public repo</span><span class="pill">⚡ No install</span><span class="pill red">🔥 Live</span></div>
-    <h1><span class="big">GitPics</span><span class="sub">See every image in any GitHub folder</span></h1>
-    <p>GitHub gives you a list of filenames. Paste the folder link here and you get the actual pictures — in their real dimensions, ready to swipe through and download.</p></section>
+    <h1><span class="big">GitPics</span><span class="sub">See every image in any <u>GitHub folder</u></span></h1>
+    <p>I kept opening GitHub folders full of wallpapers and getting a wall of filenames. So I made this: paste the link, see the actual pictures, swipe through, save the ones you like.</p></section>
   <form id="f"><input id="u" type="text" placeholder="Paste a GitHub repo or folder link…" autocomplete="off" inputmode="url" aria-label="GitHub link"><button class="go">Show</button></form>
+  <div class="note"><svg viewBox="0 0 44 34"><path d="M40 30C28 28 14 22 6 6M6 6l1 12M6 6l11 3"/></svg>paste a link. that's the whole trick.</div>
   <div id="chips"></div>
   <div class="bar" id="bar" style="display:none">
     <span id="count"></span><button id="up">↑ Up</button><span class="sp"></span>
@@ -188,71 +221,73 @@ footer b{color:var(--ye)}
   <div class="wrap"><div class="orange"><h2>From filename list to gallery in ten seconds.</h2>
     <div class="steps"><div><b>copy</b><span>any github link</span></div><div><b>paste</b><span>it here</span></div><div><b>scroll</b><span>you're in</span></div></div></div></div>
   <div class="teal"><div class="wrap"><h2>What you actually get</h2><p>The things that matter when you're trying to browse 500 wallpapers without losing your mind.</p>
-    <div class="cards"><div><i>↕</i><b>Real aspect ratios</b><span>Portrait stays portrait. Ultrawide stays ultrawide. Nothing gets force-cropped unless you ask for it.</span></div>
-      <div><i>∅</i><b>Zero setup</b><span>Open a tab, paste a link. No extension, no account, no steps you'll forget by next time.</span></div>
-      <div><i>⌂</i><b>Stays in your browser</b><span>Your history lives in your own localStorage. Nothing touches a server.</span></div></div></div></div>
+    <div class="cards"><div><i>↕</i><b>Real aspect ratios</b><span>Portrait stays portrait, ultrawide stays ultrawide. Nothing gets cropped unless you tell it to.</span></div>
+      <div><i>∅</i><b>Zero setup</b><span>Open a tab, paste a link. No extension, no sign-up, nothing to remember next time.</span></div>
+      <div><i>⌂</i><b>Stays in your browser</b><span>Your history sits in your own browser. There is no server of mine to send it to.</span></div></div></div></div>
   <div class="wrap sec"><h2>How to preview images in a GitHub folder</h2>
     <p>Copy any GitHub repo or folder URL, paste it into the box above and hit Show. Or prefix any GitHub link with <b>https://gitpics.pages.dev/#</b> and open it directly.</p>
     <h2 style="margin-top:26px">FAQ</h2><div class="faq">
       <details><summary>Does GitPics need a login?</summary><p>No. It works with public repositories and needs no account or install.</p></details>
       <details><summary>Does it work on phones?</summary><p>Yes. It is built mobile-first with swipe navigation and one-tap download.</p></details>
       <details><summary>Why can't GitHub do this?</summary><p>GitHub's file browser is built for code, not images. It shows generic file icons for every extension — GitPics adds the visual layer that's missing.</p></details>
-      <details><summary>Who built this?</summary><p>A developer who got tired of clicking filenames one by one. It's open source — one HTML file, no build step — so if you want to add something, you genuinely can.</p></details>
-      <details><summary>Can I contribute?</summary><p>Yes. The entire codebase is <code>index.html</code>. Open it in a browser. Make a change. Send a pull request. There's no toolchain to fight.</p></details></div></div>
+      <details><summary>Who built this?</summary><p>Me, Krishna. I got tired of clicking filenames one by one and wrote the fix. It's one HTML file with no build step, so if you want to add something, you really can.</p></details>
+      <details><summary>Can I contribute?</summary><p>Please do. The entire codebase is <code>index.html</code>. Open it, change something, send a pull request. First PRs are very welcome, and I'll help you get yours merged.</p></details></div></div>
 </section>
 
 <section id="contrib">
   <div class="wrap">
-    <div class="fileclaim">⬡ open project</div>
-    <h2 style="font-size:clamp(1.6rem,6vw,2.3rem);text-transform:uppercase;margin-bottom:10px">Make it yours</h2>
-    <p class="contrib-lede">GitPics is one HTML file. No build step, no npm install, no framework to learn. Open <code style="background:var(--ye);color:#0b1a33;padding:1px 5px;border-radius:3px;font-weight:700">index.html</code> in a browser and start editing. If you've wanted to contribute to something without wrestling a toolchain first — this is that project.</p>
+    <div class="fileclaim">⬡ open project · you're invited</div>
+    <h2 style="font-size:clamp(1.6rem,6vw,2.3rem);text-transform:uppercase;margin-bottom:10px">Come <u>make it yours</u></h2>
+    <p class="contrib-lede">GitPics is small on purpose: one HTML file, no npm, no framework. If you've never opened a pull request before, this is a friendly place for the first one. If you have, there's plenty left to build. Everything below counts, code or not.</p>
+    <div class="ways">
+      <div><b>Write code</b>Pick something from the list, fork, edit, PR.</div>
+      <div><b>Break it</b>Try weird repos and phones. Tell me what dies.</div>
+      <div><b>Make it prettier</b>Colors, icons, doodles, layout ideas.</div>
+      <div><b>Fix words</b>Typos, clearer text, translations.</div>
+      <div><b>Spread it</b>Show it to the friend with 400 wallpapers.</div>
+    </div>
+    <div class="cta-row">
+      <a class="cta" href="https://github.com/krvats/gitpics/fork" target="_blank" rel="noopener">Fork it</a>
+      <a class="cta alt" href="https://github.com/krvats/gitpics/issues/new/choose" target="_blank" rel="noopener">Open an issue</a>
+      <a class="cta alt" href="https://github.com/krvats/gitpics/issues" target="_blank" rel="noopener">See open issues</a>
+      <a class="cta alt" href="https://github.com/krvats/gitpics" target="_blank" rel="noopener">★ Star it</a>
+    </div>
     <div class="contrib-cols">
       <div>
-        <div class="road-label">What's still unbuilt</div>
+        <div class="road-label">Still unbuilt · grab one</div>
         <ul class="road">
           <li>Multi-select + batch download</li>
-          <li>Keyboard shortcut reference panel</li>
+          <li>Keyboard shortcut cheat sheet</li>
           <li>Slideshow / autoplay mode</li>
           <li>Better handling for huge folders (&gt; 1,000 images)</li>
-          <li>Animated WebP thumbnail support</li>
+          <li>Animated WebP thumbnails</li>
         </ul>
-        <p class="clink">Got something else in mind? <button class="txt-link" onclick="ghOpen('/issues/new')">Open an issue →</button></p>
+        <p class="clink">Have a different idea? <a href="https://github.com/krvats/gitpics/issues/new/choose" target="_blank" rel="noopener">Tell me about it →</a></p>
       </div>
       <div>
         <div class="road-label">How to jump in</div>
-        <div class="ccard">
-          <h4>🐛 Found a bug?</h4>
-          <p>Open an issue with what you saw vs. what you expected. A repro case makes it much faster to fix.</p>
-          <button class="txt-link" onclick="ghOpen('/issues/new')">Report it →</button>
-        </div>
-        <div class="ccard">
-          <h4>🔧 Want to fix or build something?</h4>
-          <p>Fork → edit <code style="background:var(--ye);color:#0b1a33;padding:1px 4px;border-radius:3px">index.html</code> → open a pull request. The entire codebase is that file.</p>
-          <button class="txt-link" onclick="ghOpen('/fork')">Fork the repo →</button>
-        </div>
+        <div class="ccard"><h4>🐛 Found a bug?</h4><p>Say what you saw and what you expected. A link to the repo that broke it makes it ten times faster to fix.</p><a href="https://github.com/krvats/gitpics/issues/new/choose" target="_blank" rel="noopener">Report it →</a></div>
+        <div class="ccard"><h4>🔧 Want to build something?</h4><p>Fork, edit <code style="background:var(--ye);color:#0b1a33;padding:1px 4px;border-radius:3px">index.html</code>, open a pull request. Read the short <a href="https://github.com/krvats/gitpics/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">contributing guide</a> first if you like.</p><a href="https://github.com/krvats/gitpics/pulls" target="_blank" rel="noopener">See pull requests →</a></div>
       </div>
     </div>
     <div class="badge-zone">
       <h3>Your contributor badge</h3>
-      <p class="bz-sub">After your PR is merged, this is yours. Put it on your GitHub profile README, your portfolio, your CV — anywhere you want people to see that you shipped something real and open source.</p>
+      <p class="bz-sub">Once your PR is merged, it's yours. Pin it on your GitHub profile, portfolio or CV.</p>
       <div class="badge-code" id="badge-code" onclick="copyBadge()" title="Click to copy the markdown">[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&amp;logo=github&amp;logoColor=white)](https://gitpics.pages.dev)</div>
       <p class="copy-hint" id="badge-hint">click anywhere on the code above to copy</p>
-      <div class="badge-preview">
-        <img src="https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white" alt="Contributed to GitPics" style="height:28px;border-radius:3px">
-        <span>← what it looks like in a README</span>
-      </div>
+      <div class="badge-preview"><img src="https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white" alt="Contributed to GitPics" style="height:28px;border-radius:3px"><span>← what it looks like in a README</span></div>
     </div>
   </div>
 </section>
 
-<footer><b>GitPics</b> — built out of frustration, maintained out of stubbornness · open source · not affiliated with GitHub · images belong to their repo owners</footer>
+<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
   <div class="row"><button id="lp">← Prev</button><button id="ld">⬇ Download</button><button id="ln">Next →</button></div></div>
 <script>
 /* ── GitPics repo URL — update this before deploying your fork ──────── */
-var GITHUB_REPO = '';  /* e.g. 'https://github.com/your-username/gitpics' */
+var GITHUB_REPO = 'https://github.com/krvats/gitpics';
 function ghOpen(path){
-  var base = GITHUB_REPO || 'https://github.com';
+  var base = GITHUB_REPO;
   window.open(base + path, '_blank', 'noopener');
 }
 </script>
@@ -406,11 +441,6 @@ function copyBadge(){
   if(navigator.clipboard){navigator.clipboard.writeText(raw).then(()=>{h.textContent='copied ✓';setTimeout(()=>h.textContent='click anywhere on the code above to copy',2200)}).catch(sel);}else sel();
   function sel(){const el=document.getElementById('badge-code');const s=window.getSelection(),r=document.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);}
 }
-
-function copyBadge(){
-  const raw='[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white)](https://gitpics.pages.dev)';
-  const h=document.getElementById('badge-hint');
-  if(navigator.clipboard){navigator.clipboard.writeText(raw).then(()=>{h.textContent='copied ✓';setTimeout(()=>h.textContent='click anywhere on the code above to copy',2200)}).catch(sel);}else sel();
-  function sel(){const el=document.getElementById('badge-code');const s=window.getSelection(),r=document.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);}
-}
 </script>
+</body>
+</html>
