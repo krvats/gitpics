@@ -29,7 +29,7 @@ body{background-color:var(--bg);background-image:radial-gradient(circle,var(--do
 .strip{background:var(--te);color:#fff;font-size:12px;font-weight:700;text-align:center;padding:calc(7px + env(safe-area-inset-top)) 10px 7px;border-bottom:3px solid var(--ink)}
 .top{display:flex;justify-content:space-between;align-items:center;gap:8px;max-width:960px;margin:0 auto;padding:14px 16px;border-bottom:3px solid var(--ink);max-width:none;background:var(--bg)}
 .top .in{display:flex;align-items:center;gap:8px}
-.logo{font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:-.01em}
+.logo{color:inherit;text-decoration:none;cursor:pointer;font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:-.01em}
 .logo:hover{animation:wiggle .5s}
 .tag{background:var(--or);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;padding:3px 8px;border-radius:4px}
 @keyframes wiggle{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
@@ -215,7 +215,7 @@ kbd{font:700 12px ui-monospace,monospace;background:var(--ye);color:#0b1a33;bord
 </head>
 <body>
 <div class="strip">one .html file · no login · no install · come build it with me</div>
-<header class="top"><div class="in"><span class="logo">GitPics</span><span class="tag">v1.0</span></div><a class="gh" href="https://github.com/krvats/gitpics" target="_blank" rel="noopener">★ star on GitHub</a><button id="kbb" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button><button id="th" aria-label="Toggle theme">Dark</button></header>
+<header class="top"><div class="in"><a class="logo" href="./" aria-label="GitPics home" onclick="event.preventDefault();history.pushState(null,'',location.pathname+location.search);$('u').value='';route();scrollTo(0,0)">GitPics</a><span class="tag">v1.0</span></div><a class="gh" href="https://github.com/krvats/gitpics" target="_blank" rel="noopener">★ star on GitHub</a><button id="kbb" aria-label="Keyboard shortcuts" title="Shortcuts (?)">?</button><button id="th" aria-label="Toggle theme">Dark</button></header>
 <main>
   <section id="hero"><i class="fl a">★</i><i class="fl b">✎</i><i class="fl c">●</i>
     <div class="pills"><span class="pill">Any public repo</span><span class="pill">No install</span><span class="pill red">Live</span></div>
@@ -297,7 +297,7 @@ kbd{font:700 12px ui-monospace,monospace;background:var(--ye);color:#0b1a33;bord
   </div>
 </section>
 
-<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> v1.0.0 · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
+<footer><span class="sign">made by Krishna, for anyone with a folder full of pictures</span><b>GitPics</b> v1.0.1 · built out of frustration, maintained out of stubbornness · <a href="https://github.com/krvats/gitpics" style="color:var(--ye)" target="_blank" rel="noopener">source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
 <div id="kb"><div class="box"><h3>Shortcuts</h3>
 <p>Previous / next <span><kbd>←</kbd><kbd>→</kbd></span></p><p>Play / pause slideshow <span><kbd>Space</kbd></span></p><p>Download image <span><kbd>D</kbd></span></p><p>Open on GitHub <span><kbd>G</kbd></span></p><p>Copy image link <span><kbd>C</kbd></span></p><p>Focus filter <span><kbd>/</kbd></span></p><p>Close <span><kbd>Esc</kbd></span></p><p>This panel <span><kbd>?</kbd></span></p></div></div>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>

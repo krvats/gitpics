@@ -8,3 +8,6 @@
 - Open any image on GitHub from the viewer
 - Dark mode fixes for the contributor badge box and the hint arrow
 - New look, new README, CONTRIBUTING and issue templates
+
+## 1.0.1
+- The GitPics logo in the header now takes you back to the home page
