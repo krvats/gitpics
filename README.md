@@ -2,126 +2,133 @@
 
 <img src="og.jpg" alt="GitPics – see every image in any GitHub folder" width="760">
 
-# 🖼️ GitPics
+# GitPics
 
-### GitHub shows you file names. GitPics shows you the *pictures.*
+GitHub gives you filenames. GitPics gives you the pictures.
 
-**Paste any GitHub repo or folder link → get a thumbnail gallery. No login. No install. Works on your phone.**
+**Paste any GitHub repo or folder link → thumbnail gallery, instantly.**  
+No login. No install. Opens on your phone.
 
-[**🚀 Open GitPics**](https://gitpics.pages.dev) &nbsp;·&nbsp; [**🐛 Report a bug**](../../issues) &nbsp;·&nbsp; [**⭐ Star it (please)**](../../stargazers)
+[gitpics.pages.dev →](https://gitpics.pages.dev) &nbsp;·&nbsp; [file a bug](../../issues) &nbsp;·&nbsp; [star it](../../stargazers)
 
-![Live](https://img.shields.io/badge/status-live-ff5a1f?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-0b1a33?style=for-the-badge)
-![No login](https://img.shields.io/badge/login-never-008080?style=for-the-badge)
-![Price](https://img.shields.io/badge/price-free%20forever-ffd600?style=for-the-badge&labelColor=0b1a33)
+![status](https://img.shields.io/badge/status-live-ff5a1f?style=flat-square)
+![license](https://img.shields.io/badge/license-MIT-0b1a33?style=flat-square)
+![no login](https://img.shields.io/badge/login-none-008080?style=flat-square)
+![free](https://img.shields.io/badge/free-forever-ffd600?style=flat-square&labelColor=0b1a33)
 
 </div>
 
 ---
 
-## 😤 The problem
+## The problem
 
-You open a GitHub folder with 1,000 wallpapers and see this:
+Open a GitHub folder with a hundred wallpapers and you get:
 
 ```
-📄 0163.jpg
-📄 0172.jpg
-📄 01r583.jpg
-📄 ...(997 more generic file icons)
+sunset_001.jpg
+sunset_002.jpg
+sunset_003.jpg
+... (97 more filenames)
 ```
 
-Click, back, click, back. Your thumb is filing for divorce.
+Click one. Wait. Back. Click another. Wait. Back.  
+For a platform built around files, this is a strange blind spot — and after going through it one too many times, I got annoyed enough to write the fix.
 
-## ✨ The fix
+## What it does
 
-Paste the folder link into **GitPics** and it turns into a gallery: every image as a thumbnail, in its **real aspect ratio** (portrait stays portrait, ultrawide stays ultrawide), with a swipeable full-screen viewer and one-tap download.
+Paste a repo or folder URL. GitPics reads the folder through GitHub's API, shows every image as a thumbnail with its real aspect ratio, and gives you a full-screen swipe viewer with one-tap download. It runs entirely in your browser — no account, no backend, nothing to install.
 
-## ⚡ Try it in 10 seconds
+## Using it
 
-> The one and only official GitPics lives at **[gitpics.pages.dev](https://gitpics.pages.dev)**. Nothing to download, nothing to set up. Just open it.
-
-1. Copy any GitHub repo or folder link
-2. Paste it into [GitPics](https://gitpics.pages.dev) and hit **SHOW**
-3. Scroll. Swipe. Download. Done.
-
-**Pro shortcut:** put `https://gitpics.pages.dev/#` in front of any GitHub link and open it. Instant gallery, no pasting.
+Put `https://gitpics.pages.dev/#` in front of any GitHub link and open it:
 
 ```
 https://gitpics.pages.dev/#https://github.com/leouieda/landsat-wallpapers
 ```
 
-## 🔥 Features
+Or open the site and paste the link directly.
+
+## What it does well
 
 | | |
 |---|---|
-| 🖼️ **Real aspect ratios** | Portrait, wide, 2K, 4K. Nothing gets cropped (square mode is one tap away) |
-| 👆 **Swipe viewer** | Drag with your finger or use the buttons. Image and filename always change together |
-| ⚡ **Fast on mobile** | Thumbnails and viewer images are resized on the fly, so a 5 MB wallpaper doesn't eat your data. Download still gives you the original |
-| 📁 **Folder navigation** | Open subfolders, go back up, switch the grid between S / M / L |
-| 🕘 **Recent + Popular** | Remembers what you opened and suggests popular wallpaper repos, all by itself |
-| 🔗 **Shareable links** | Copy a link to any gallery and send it to anyone |
-| 🌗 **Light / dark** | Neo-brutalist theme with a dotted background and a theme toggle |
-| 🔒 **No login, no tracking** | Runs entirely in your browser. No backend, no accounts |
+| **Aspect ratios** | Portrait, landscape, 4K — images keep their shape. Square crop is one tap away. |
+| **Swipe viewer** | Full-screen, keyboard-navigable, swipeable on touch. |
+| **Fast on mobile** | Thumbnails served resized via wsrv.nl; download still gives you the original. |
+| **Folder nav** | Browse subfolders and back out. S / M / L grid sizes. |
+| **History** | Remembers repos you've opened, stored in your own browser. Nothing hits a server. |
+| **Shareable link** | Any gallery has a URL you can copy and send. |
+| **Light / dark** | Toggle in the header. |
 
-## 🧠 How it works
+## Honest limits
 
-- Reads the folder with GitHub's public **Git Trees API** (one request per folder)
-- Loads images straight from `raw.githubusercontent.com`
-- Makes thumbnails through the free [wsrv.nl](https://wsrv.nl) image resizer, and falls back to the original file if it's unavailable
-- Saves your recent folders in your own browser's `localStorage`. Nothing is sent anywhere
+- **Public repos only** — private repos require auth, which GitPics doesn't do
+- **60 API requests per hour** — each folder costs one; normal use stays well under
+- **Git LFS images won't show** — GitHub serves those through a separate mechanism
+- **Large folders** — GitHub's API caps the listing; GitPics can only show what it returns
 
-## ⚠️ Honest limits
+---
 
-- **Public repos only.** Private repos need a login, and GitPics doesn't do logins
-- **GitHub's API allows 60 requests per hour per person.** Each folder you open costs one, which is plenty for normal browsing
-- **Images stored with Git LFS won't show.** GitHub serves those differently
-- **Huge folders:** GitHub itself caps very large listings, so GitPics can only show what it returns
-- Layout may shift a little while images load, because GitHub doesn't tell us an image's size in advance
+## Contributing
 
-## 🥺 The part where I beg
+This is one HTML file. No build step, no npm, no transpiler. You open `index.html` in a browser and edit it. If you've been looking for a project where the whole codebase fits in one file — this is it.
 
-Look, I built this so you'd never have to click a file named `a_black_and_white_drawing_of_a_woman_in_a_black_and_white_...png` again.
+### What's needed
 
-All I ask in return is **one tiny star** ⭐
+- [ ] Multi-select + batch download
+- [ ] Keyboard shortcut overlay panel
+- [ ] Slideshow / autoplay mode
+- [ ] Better handling of huge folders (> 1,000 images)
+- [ ] Animated WebP thumbnail support
 
-If you don't star it:
-- 🐌 Your next `git clone` will feel 3% slower (not scientifically proven, but do you want to risk it?)
-- 😢 This README will cry in a corner
-- 🧦 A sock will go missing from your laundry. Not mine. Yours.
-- 👀 I will know. (I will not know. But I'll *feel* it.)
+### How to jump in
 
-If you **do** star it:
-- 🚀 Instant good karma
-- 🧠 Your taste in tools is officially immaculate
-- 🥇 You are a legend and the README says thank you
+```bash
+git clone https://github.com/[owner]/gitpics
+cd gitpics
+# open index.html in a browser
+# make your change — the whole codebase is that one file
+# open a pull request
+```
 
-> **[⭐ Click here. It takes one second. Your wallpaper folder will thank you.](../../stargazers)**
+There's no build step to run. No config to set. Open the file. Change something. Send the PR.
 
-## 🤝 Contributing
+### Your contributor badge
 
-Found a bug? Got an idea? Open an [issue](../../issues) and it will make GitPics better for everyone.
+Once your PR is merged, this is yours. Pin it to your GitHub profile README, your portfolio, or anywhere you want people to know you shipped something real:
 
-Ideas that would be cool:
-- [ ] Select several images and download them together
-- [ ] Better support for huge folders
-- [ ] Slideshow mode
-- [ ] Keyboard shortcuts cheat sheet
+```markdown
+[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white)](https://gitpics.pages.dev)
+```
 
-## 🙏 Credits
+[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white)](https://gitpics.pages.dev)
 
-- Share-image photos: "Amazon delta" and other Landsat wallpapers from [leouieda/landsat-wallpapers](https://github.com/leouieda/landsat-wallpapers), made from public-domain Landsat data and released under **CC0**
-- Thumbnails by [wsrv.nl](https://wsrv.nl)
+---
+
+## How it works
+
+- Reads folder contents via GitHub's **Git Trees API** — one request, all entries at once
+- Loads images from `raw.githubusercontent.com`
+- Thumbnails via [wsrv.nl](https://wsrv.nl), a free image proxy — falls back to the raw URL if unavailable
+- Recent history stored in `localStorage`; nothing leaves your browser
+
+## Credits
+
+- OG image: Landsat wallpapers from [leouieda/landsat-wallpapers](https://github.com/leouieda/landsat-wallpapers) (CC0 public domain)
+- Thumbnails: [wsrv.nl](https://wsrv.nl)
 - Typeface: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk)
-- GitPics is **not affiliated with GitHub**. Images belong to their repo owners
+- Not affiliated with GitHub. Images belong to their respective repo owners.
 
-## 📜 License
+## License
 
-Released under the [MIT License](LICENSE).
+[MIT](LICENSE) — do whatever you want with it.
+
+---
 
 <div align="center">
 
-**Made with ☕, mild frustration, and a lot of unnecessary box-shadows.**
+Built out of frustration. Maintained out of stubbornness.
 
-⭐ *Star this repo and make the README happy* ⭐
+If it saved your thumb some clicks, a ⭐ helps it reach more people.
 
 </div>

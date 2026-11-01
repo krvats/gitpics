@@ -129,16 +129,47 @@ footer b{color:var(--ye)}
 .t .n{opacity:1;background:#0b1a33;color:#f4f1ea;font-size:11.5px;font-weight:600;padding:6px 9px;text-shadow:none;border-top:3px solid var(--ink)}
 .m .t .n{position:static}
 .g .t .n{position:absolute;left:0;right:0;bottom:0}
+
+/* ── contribute section ── */
+#contrib{padding:46px 0 54px;background:var(--bg);border-top:3.5px solid var(--ink)}
+.contrib-lede{font-size:1rem;font-weight:600;color:var(--sub);max-width:580px;margin-bottom:28px;line-height:1.6}
+.contrib-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:30px}
+@media(max-width:640px){.contrib-cols{grid-template-columns:1fr}}
+.road{list-style:none;display:flex;flex-direction:column;gap:10px;margin:0}
+.road li{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;background:var(--card);border:2.5px solid var(--ink);border-radius:8px;box-shadow:3px 3px 0 var(--ink);font-weight:600;font-size:13.5px;line-height:1.4}
+.road li::before{content:'☐';font-size:18px;line-height:1.1;flex-shrink:0;color:var(--or)}
+.road-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);margin-bottom:10px}
+.clink{font-size:12.5px;color:var(--sub);font-weight:600;margin-top:12px}
+.clink a{color:var(--text);border-bottom:2px solid var(--or);text-decoration:none}
+.clink a:hover{color:var(--or)}
+.ccard{background:var(--card);border:2.5px solid var(--ink);border-radius:10px;padding:18px;box-shadow:4px 4px 0 var(--ink);margin-bottom:14px;transition:transform .15s,box-shadow .15s}
+.ccard:last-child{margin-bottom:0}
+.ccard:hover{transform:translate(-3px,-3px);box-shadow:7px 7px 0 var(--or)}
+.ccard h4{font-size:.95rem;text-transform:uppercase;margin-bottom:7px}
+.ccard p{font-size:13px;color:var(--sub);font-weight:500;line-height:1.5;margin-bottom:10px}
+.ccard a{font-weight:700;font-size:13px;color:var(--text);text-decoration:none;border-bottom:2.5px solid var(--or);padding-bottom:1px}
+.ccard a:hover{color:var(--or)}
+.badge-zone{background:var(--ink);color:#f4f1ea;border-radius:12px;padding:22px 20px;border:3px solid var(--ink);position:relative;overflow:hidden}
+:root[data-theme=dark] .badge-zone{border-color:#ffffff40}
+.badge-zone::before{content:'';position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:var(--or);opacity:.12}
+.badge-zone h3{font-size:1.05rem;text-transform:uppercase;margin-bottom:7px;position:relative}
+.badge-zone .bz-sub{font-size:13px;color:#9fb0cf;margin-bottom:16px;line-height:1.5;position:relative}
+.badge-code{background:#ffffff12;border:1.5px dashed #ffffff35;border-radius:7px;padding:11px 14px;font-family:ui-monospace,monospace;font-size:11.5px;word-break:break-all;cursor:pointer;transition:background .15s,border-color .15s;position:relative;line-height:1.6}
+.badge-code:hover{background:#ffffff1e;border-color:#ffffff60}
+.copy-hint{font-size:11px;color:#9fb0cf;margin-top:6px;font-weight:600}
+.badge-preview{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:14px;border-top:1.5px solid #ffffff18}
+.badge-preview span{font-size:12px;color:#9fb0cf}
+.fileclaim{display:inline-flex;align-items:center;gap:7px;background:var(--ye);color:#0b1a33;border:2.5px solid var(--ink);border-radius:99px;padding:4px 13px 4px 10px;font-size:11.5px;font-weight:700;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink);margin-bottom:16px;letter-spacing:.02em}
 </style>
 </head>
 <body>
-<div class="strip">⚡ Free · No login · Works on phones · Public GitHub repos</div>
-<header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">Free tool</span></div><button id="th" aria-label="Toggle theme">🌙</button></header>
+<div class="strip">one .html file · no login · no install · <a href="../../" style="color:inherit;text-decoration:underline;font-weight:700">open source on github →</a></div>
+<header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">open source</span></div><button id="th" aria-label="Toggle theme">🌙</button></header>
 <main>
   <section id="hero"><i class="fl a">🌄</i><i class="fl b">🎨</i><i class="fl c">📸</i>
     <div class="pills"><span class="pill">📍 Any public repo</span><span class="pill">⚡ No install</span><span class="pill red">🔥 Live</span></div>
     <h1><span class="big">GitPics</span><span class="sub">See every image in any GitHub folder</span></h1>
-    <p>GitHub only shows file names. Paste a repo or folder link and get a thumbnail gallery. Free, no login, built for phones.</p></section>
+    <p>GitHub gives you a list of filenames. Paste the folder link here and you get the actual pictures — in their real dimensions, ready to swipe through and download.</p></section>
   <form id="f"><input id="u" type="text" placeholder="Paste a GitHub repo or folder link…" autocomplete="off" inputmode="url" aria-label="GitHub link"><button class="go">Show</button></form>
   <div id="chips"></div>
   <div class="bar" id="bar" style="display:none">
@@ -150,20 +181,67 @@ footer b{color:var(--ye)}
   <div id="grid" class="m"></div>
 </main>
 <section id="feat">
-  <div class="wrap"><div class="orange"><h2>3 steps. That's it.</h2>
-    <div class="steps"><div><b>01</b><span>Copy link</span></div><div><b>02</b><span>Paste it</span></div><div><b>03</b><span>Browse</span></div></div></div></div>
-  <div class="teal"><div class="wrap"><h2>Why GitPics?</h2><p>Stop opening files one by one.</p>
-    <div class="cards"><div><i>01</i><b>⚡ No install</b><span>Open the site, paste a link. Nothing to set up.</span></div>
-      <div><i>02</i><b>📱 Phone-first</b><span>Swipe through images and download in one tap.</span></div>
-      <div><i>03</i><b>🔒 Private &amp; free</b><span>No login, no tracking. Runs in your browser.</span></div></div></div></div>
+  <div class="wrap"><div class="orange"><h2>From filename list to gallery in ten seconds.</h2>
+    <div class="steps"><div><b>copy</b><span>any github link</span></div><div><b>paste</b><span>it here</span></div><div><b>scroll</b><span>you're in</span></div></div></div></div>
+  <div class="teal"><div class="wrap"><h2>What you actually get</h2><p>The things that matter when you're trying to browse 500 wallpapers without losing your mind.</p>
+    <div class="cards"><div><i>↕</i><b>Real aspect ratios</b><span>Portrait stays portrait. Ultrawide stays ultrawide. Nothing gets force-cropped unless you ask for it.</span></div>
+      <div><i>∅</i><b>Zero setup</b><span>Open a tab, paste a link. No extension, no account, no steps you'll forget by next time.</span></div>
+      <div><i>⌂</i><b>Stays in your browser</b><span>Your history lives in your own localStorage. Nothing touches a server.</span></div></div></div></div>
   <div class="wrap sec"><h2>How to preview images in a GitHub folder</h2>
-    <p>Copy the folder link from GitHub, paste it above and press Show. Or put this site's address plus <b>#</b> before any GitHub link.</p>
+    <p>Copy any GitHub repo or folder URL, paste it into the box above and hit Show. Or prefix any GitHub link with <b>https://gitpics.pages.dev/#</b> and open it directly.</p>
     <h2 style="margin-top:26px">FAQ</h2><div class="faq">
       <details><summary>Does GitPics need a login?</summary><p>No. It works with public repositories and needs no account or install.</p></details>
       <details><summary>Does it work on phones?</summary><p>Yes. It is built mobile-first with swipe navigation and one-tap download.</p></details>
-      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file list shows only generic icons, so GitPics adds a real thumbnail view.</p></details></div></div>
+      <details><summary>Why can't GitHub do this?</summary><p>GitHub's file browser is built for code, not images. It shows generic file icons for every extension — GitPics adds the visual layer that's missing.</p></details>
+      <details><summary>Who built this?</summary><p>A developer who got tired of clicking filenames one by one. It's open source — one HTML file, no build step — so if you want to add something, you genuinely can.</p></details>
+      <details><summary>Can I contribute?</summary><p>Yes. The entire codebase is <code>index.html</code>. Open it in a browser. Make a change. Send a pull request. There's no toolchain to fight.</p></details></div></div>
 </section>
-<footer><b>GitPics</b> · Not affiliated with GitHub · Images belong to their repo owners</footer>
+
+<section id="contrib">
+  <div class="wrap">
+    <div class="fileclaim">⬡ open project</div>
+    <h2 style="font-size:clamp(1.6rem,6vw,2.3rem);text-transform:uppercase;margin-bottom:10px">Make it yours</h2>
+    <p class="contrib-lede">GitPics is one HTML file. No build step, no npm install, no framework to learn. Open <code style="background:var(--ye);color:#0b1a33;padding:1px 5px;border-radius:3px;font-weight:700">index.html</code> in a browser and start editing. If you've wanted to contribute to something without wrestling a toolchain first — this is that project.</p>
+    <div class="contrib-cols">
+      <div>
+        <div class="road-label">What's still unbuilt</div>
+        <ul class="road">
+          <li>Multi-select + batch download</li>
+          <li>Keyboard shortcut reference panel</li>
+          <li>Slideshow / autoplay mode</li>
+          <li>Better handling for huge folders (&gt; 1,000 images)</li>
+          <li>Animated WebP thumbnail support</li>
+        </ul>
+        <p class="clink">Got something else in mind? <a href="../../issues/new">Open an issue →</a></p>
+      </div>
+      <div>
+        <div class="road-label">How to jump in</div>
+        <div class="ccard">
+          <h4>🐛 Found a bug?</h4>
+          <p>Open an issue with what you saw vs. what you expected. A repro case makes it much faster to fix.</p>
+          <a href="../../issues/new">Report it →</a>
+        </div>
+        <div class="ccard">
+          <h4>🔧 Want to fix or build something?</h4>
+          <p>Fork → edit <code style="background:var(--ye);color:#0b1a33;padding:1px 4px;border-radius:3px">index.html</code> → open a pull request. The entire codebase is that file.</p>
+          <a href="../../fork">Fork the repo →</a>
+        </div>
+      </div>
+    </div>
+    <div class="badge-zone">
+      <h3>Your contributor badge</h3>
+      <p class="bz-sub">After your PR is merged, this is yours. Put it on your GitHub profile README, your portfolio, your CV — anywhere you want people to see that you shipped something real and open source.</p>
+      <div class="badge-code" id="badge-code" onclick="copyBadge()" title="Click to copy the markdown">[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&amp;logo=github&amp;logoColor=white)](https://gitpics.pages.dev)</div>
+      <p class="copy-hint" id="badge-hint">click anywhere on the code above to copy</p>
+      <div class="badge-preview">
+        <img src="https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white" alt="Contributed to GitPics" style="height:28px;border-radius:3px">
+        <span>← what it looks like in a README</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><b>GitPics</b> — built out of frustration, maintained out of stubbornness · <a href="../../" style="color:var(--ye)">open source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
   <div class="row"><button id="lp">← Prev</button><button id="ld">⬇ Download</button><button id="ln">Next →</button></div></div>
 
@@ -309,6 +387,18 @@ function render(pop){
 $('chips').addEventListener('click',e=>{if(e.target.id==='clr'){e.preventDefault();LS.set('gp-hist',[]);render(POP)}});
 render([]);popular().then(p=>{POP=p;render(p)});
 })();
+
+function copyBadge(){
+  const raw='[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white)](https://gitpics.pages.dev)';
+  const h=document.getElementById('badge-hint');
+  if(navigator.clipboard){navigator.clipboard.writeText(raw).then(()=>{h.textContent='copied ✓';setTimeout(()=>h.textContent='click anywhere on the code above to copy',2200)}).catch(sel);}else sel();
+  function sel(){const el=document.getElementById('badge-code');const s=window.getSelection(),r=document.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);}
+}
+
+function copyBadge(){
+  const raw='[![Contributed to GitPics](https://img.shields.io/badge/contributed%20to-GitPics-ff5a1f?style=for-the-badge&logo=github&logoColor=white)](https://gitpics.pages.dev)';
+  const h=document.getElementById('badge-hint');
+  if(navigator.clipboard){navigator.clipboard.writeText(raw).then(()=>{h.textContent='copied ✓';setTimeout(()=>h.textContent='click anywhere on the code above to copy',2200)}).catch(sel);}else sel();
+  function sel(){const el=document.getElementById('badge-code');const s=window.getSelection(),r=document.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);}
+}
 </script>
-</body>
-</html>
