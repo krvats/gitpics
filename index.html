@@ -160,10 +160,14 @@ footer b{color:var(--ye)}
 .badge-preview{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:14px;border-top:1.5px solid #ffffff18}
 .badge-preview span{font-size:12px;color:#9fb0cf}
 .fileclaim{display:inline-flex;align-items:center;gap:7px;background:var(--ye);color:#0b1a33;border:2.5px solid var(--ink);border-radius:99px;padding:4px 13px 4px 10px;font-size:11.5px;font-weight:700;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink);margin-bottom:16px;letter-spacing:.02em}
+
+.txt-link{background:none;border:none;box-shadow:none;border-radius:0;border-bottom:2.5px solid var(--or);padding:0 0 1px;font-size:13px;color:var(--text);cursor:pointer;font-weight:700;font-family:inherit}
+.txt-link:hover{color:var(--or);transform:none;box-shadow:none}
+.txt-link:active{transform:none;box-shadow:none}
 </style>
 </head>
 <body>
-<div class="strip">one .html file · no login · no install · <a href="../../" style="color:inherit;text-decoration:underline;font-weight:700">open source on github →</a></div>
+<div class="strip">one .html file · no login · no install · open source</div>
 <header class="top"><div class="in"><span class="logo">🖼️ GitPics</span><span class="tag">open source</span></div><button id="th" aria-label="Toggle theme">🌙</button></header>
 <main>
   <section id="hero"><i class="fl a">🌄</i><i class="fl b">🎨</i><i class="fl c">📸</i>
@@ -212,19 +216,19 @@ footer b{color:var(--ye)}
           <li>Better handling for huge folders (&gt; 1,000 images)</li>
           <li>Animated WebP thumbnail support</li>
         </ul>
-        <p class="clink">Got something else in mind? <a href="../../issues/new">Open an issue →</a></p>
+        <p class="clink">Got something else in mind? <button class="txt-link" onclick="ghOpen('/issues/new')">Open an issue →</button></p>
       </div>
       <div>
         <div class="road-label">How to jump in</div>
         <div class="ccard">
           <h4>🐛 Found a bug?</h4>
           <p>Open an issue with what you saw vs. what you expected. A repro case makes it much faster to fix.</p>
-          <a href="../../issues/new">Report it →</a>
+          <button class="txt-link" onclick="ghOpen('/issues/new')">Report it →</button>
         </div>
         <div class="ccard">
           <h4>🔧 Want to fix or build something?</h4>
           <p>Fork → edit <code style="background:var(--ye);color:#0b1a33;padding:1px 4px;border-radius:3px">index.html</code> → open a pull request. The entire codebase is that file.</p>
-          <a href="../../fork">Fork the repo →</a>
+          <button class="txt-link" onclick="ghOpen('/fork')">Fork the repo →</button>
         </div>
       </div>
     </div>
@@ -241,9 +245,17 @@ footer b{color:var(--ye)}
   </div>
 </section>
 
-<footer><b>GitPics</b> — built out of frustration, maintained out of stubbornness · <a href="../../" style="color:var(--ye)">open source</a> · not affiliated with GitHub · images belong to their repo owners</footer>
+<footer><b>GitPics</b> — built out of frustration, maintained out of stubbornness · open source · not affiliated with GitHub · images belong to their repo owners</footer>
 <div id="lb"><button class="x" id="lx">✕</button><img id="li" alt=""><div class="cap" id="lc"></div>
   <div class="row"><button id="lp">← Prev</button><button id="ld">⬇ Download</button><button id="ln">Next →</button></div></div>
+<script>
+/* ── GitPics repo URL — update this before deploying your fork ──────── */
+var GITHUB_REPO = '';  /* e.g. 'https://github.com/your-username/gitpics' */
+function ghOpen(path){
+  var base = GITHUB_REPO || 'https://github.com';
+  window.open(base + path, '_blank', 'noopener');
+}
+</script>
 
 <script>
 const $=id=>document.getElementById(id);
